@@ -40,9 +40,15 @@ app.use(express.static("public"));
 //Est MongoDB Set-up, and ConnecT to Mongo Database (Routing)
 //=================================================
 mongoose.Promise = Promise;
-// mongoose.connect("mongodb://localhost/{NAME OF DB GOES HERE}", { // Connect to the Mongo DB
-// 	useMongoClient: true //What is the difference between using this and the following code example???
-// });
+//ONLY UNCOMMENT BELOW WHEN READY to use the PRODUCTION ENVIRONMENT ->> HEROKU, >> ie. NOT the DEV Environment
+//var MONGODB_URI = "mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk";
+var db = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
+
+mongoose.conect(db, function(error){
+	if (error) throw error;
+	useMongoClient: true;
+	console.log("mongoose connection is successful!!")
+});
 
 
 //Local Dependencies/Imports:
