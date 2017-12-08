@@ -46,10 +46,10 @@ mongoose.Promise = Promise;
 //var MONGODB_URI = "mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk";
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
-mongoose.conect(db, function(error){
+mongoose.connect(db, function(error){
 	if (error) throw error;
 	useMongoClient: true;
-	console.log("mongoose connection is successful!!")
+	console.log("Mongoose connection is successful!!")
 });
 
 

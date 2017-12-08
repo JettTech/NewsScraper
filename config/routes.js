@@ -5,8 +5,8 @@
 var scrape = require("../scripts/scrape.js");
 
 // importing the controller files:
-var articlesController = require("../controllers/articles.js");
-var notesController = require("../controllers/notes.js");
+var articlesController = require("../controller/articles.js");
+var notesController = require("../controller/notes.js");
 
 
 //Routes:

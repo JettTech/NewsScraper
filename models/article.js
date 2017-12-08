@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new UserSchema ({
 		title: {
 			type: String,
+			unique: true,
 			require: true
 		},
 
@@ -33,6 +34,11 @@ var ArticleSchema = new UserSchema ({
 		  // `Note` is an Mongoose object (model), and therefore stores its own Note id
   			// The ref property links the ObjectId to the Note model
   				// This allows us to populate the Article with an associated Note Model
+
+  		saved: {
+			type: Boolean,
+			default: false
+		}
 
 		date: {
 			type: date,
