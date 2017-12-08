@@ -4,41 +4,43 @@
 //REVIEW: Then, just pass the MONGODB_URI variable to mongoose.connect. If you define MONGODB_URI on heroku,
 // your production app will automatically use the remote database.
 
-
-
 //DEPENDENCIES:
 //===============================================
 var express = require("express");
 var app = express();
+var router = express.Router(); //WHAT IS the DIFFERENCE between using Express as express.router, vs Express as APP???
 
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+//var path = require("path"); >> DO WE NEED THIS DEPENDENCY/ PACKAGE?
 var request = require("request"); //>>REVIEW THE PURPOSE OF THIS dependency AGAIN...
 
 var logger = require("morgan");
 var cheerio = require("cheerio"); //Scraping-Tool Dependency
 var expressHandlebars = require("express-handlebars");
 
->>require("./models")(app); //LOCAL FILE
 
-//var path = require("path"); >> DO WE NEED THIS DEPENDENCY/ PACKAGE?
-
-
-//Server SET-UP (PORT, route middleware, and (general) dependency configuration.);
-//================================================================================
-var PORT = process.env.PORT | 4500;
-
-
+//Server SET-UP (Routing MIDDLEWARE Definition AND LOCAL Dependency/import Configuration)
+//=========================================================================================
+require("./config/routes")(router); //WHAT IS the difference bewtween using (app) and (router) ?!?!?!?! //LOCAL FILE >> //"./" signifies that the path/pathway for the file/folder required in, is found at the same level as current file.
+app.use(express.static("public"));  //serves the "PUBLIC" folder as the static folder/directory for entire app.
+app.use(router); //requires EVERY REQUEST to process through the ROUTER MIDDLEWARE >> Do we need to use this
+ 
 app.use(logger("")) // Use morgan logger for logging requests
 app.use(bodyParser.urlencoded({extended: false})); // code determins how to handle form
- //submissions, false denies extended objects (objects whose keys have values that are 
-  // addt'l ojbs..) to display, will return them undefined.
-app.use(express.static("public")); 
-  //serves the "PUBLIC" folder as the static folder/directory for entire app.
+ //submissions, the option "false" denies access to extended objects (objects whose keys have values that are 
+  // addt'l objs..), and will instead return them as undefined.
+
+app.engine("handlebars", expressHandlebars({ //ESTABLISHES THE ENGINE WITHIN APP
+	defaultLayout: "main" //desingates the index file to reference as the root views file.
+}));
+app.set("view-engine", "handlebars"); //INFOMRS THE APP to USE the defined VIEW ENGINE above...
 
 
-//Est MongoDB Set-up, and ConnecT to Mongo Database (Routing)
-//=================================================
+//PORT and Database Definition AND Set-up
+//=========================================
+var PORT = process.env.PORT | 4500;
+
 mongoose.Promise = Promise;
 //ONLY UNCOMMENT BELOW WHEN READY to use the PRODUCTION ENVIRONMENT ->> HEROKU, >> ie. NOT the DEV Environment
 //var MONGODB_URI = "mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk";
@@ -51,21 +53,8 @@ mongoose.conect(db, function(error){
 });
 
 
-//Local Dependencies/Imports:
-//=================================================
-
-//Routes:
-//=================================================
-
-// A GET route for scraping the echojs website
-
-var scrape
-
-
-
-
-// Start the server
-//=================================================
-var PORT = app.listen(PORT, function() {
+// Start the Server // Initialize Server Listiner with PORT Connection..
+//==========================================================================
+app.listen(PORT, function() {
 	console.log("We're listening on PORT: " + PORT);
 });

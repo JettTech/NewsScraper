@@ -4,15 +4,11 @@ $(document).ready(function(){
 	$(".button-collapse").sideNav();
 
 	$("#scrapeModal").on("click", function() {
-	    $('#modal1').modal('open'); 
+	    $('#scrapeModal').modal('open'); 
 	});
 
 	$("#editNoteModal").on("click", function() {
-		$.get("/articles/saved", function(error, data) {
-			if (error) throw error;
-			console.log("we're going to the saved-articles page");
-		});	
-		//window.location.pathname = "/articles/saved"; //an alterantive
+		    $('#editNoteModal').modal('open'); 
 	});
-
+	
 });

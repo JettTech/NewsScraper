@@ -1,17 +1,14 @@
 
       * {
-        /*font-family:; */
-/*        margin: 0 auto;*/
+        display: -webkit-border-fit: stretch;
+        border-fit: stretch;
+        /*... :border-box*/
+      }
+
+      body {
+        background-color: #F2F6D0
       }
       
-      #navHeader.brand-logo {
-        margin-left: 15px;
-      }
-
-      a#scrapeModal {
-        margin-left: 15px;
-      }
-
       #wrapper {
         width: 1000px;
         margin-left: auto;

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Daily News Scraper</title>   
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  </head>
+
+  <body>
+    <div id="mainContainer" class="container-fluid">
+      
+      <div id="spinWheel" class="preloader-wrapper big active justify-content-center" style="display: none;">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-wrapper">
+          <a id="navHeader" href="#" class="brand-logo">The Daily News Scraper</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/public/index.html">Home Sweet Home</a></li>
+            <li><a href="/public/saved">Article Archive</a></li>
+            <li><a id="scrapeModal" href="#">Scrape More Articles</a></li>
+          </ul>
+          <ul class="side-nav right-align" id="mobile-demo" style="transform: translateX(-100%);">
+            <li><a href="sass.html">Home Sweet Home</a></li>
+            <li><a href="badges.html">Article Archive</a></li>
+            <li><a id="scrapeModal" href="#">Scrape More Articles</a></li>
+          </ul>
+        </div>
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required="">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </nav>
+      
+      {{{body}}}
+
+    </div>
+
+      <!-- Modal Structure -->
+    <div id="scrapeModal" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p id="footer" class="center-align">The Daily News Scraper | ©Copyright 2017</p>
+      </div>
+    </footer>
+    <!-- ============================================================ -->
+    <script src="/public/js/index.js"></script>
+    <script src="/public/js/articlesSaved.js"></script>
+<!--     <script type="text/javascript">
+        $(document).ready(function(){      
+          $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
+          $(".parallax").parallax();
+          $(".button-collapse").sideNav();
+
+          $("#scrapeModal").on("click", function() {
+              $('#modal1').modal('open'); 
+          });
+        });
+    </script> -->
+  </body>
+</html>
