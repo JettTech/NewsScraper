@@ -27,7 +27,7 @@ var ArticleSchema = new UserSchema ({
 
 		descriptionFull: String,
 
-		note: {
+		note_ID: { //can I import the Note ID here... AND import the ID for the article in the Notes Schmea?
 			type: Schema.Types.ObjectId,
 			ref: "Note"
 		},
