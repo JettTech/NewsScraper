@@ -41,11 +41,11 @@ module.exports = function(router) {
 //---------------------
 	//GET ROUTES:
 	router.get("/articles", function(request, response){
-		response.render("homePage");
+		response.render("./homePage.handlebars");
 	});
 
 	router.get("/articles/saved", function(request, response){ //get ALL SAVED articles
-		response.render("articleSaved");
+		response.render("./articleSaved.handlebars");
 	});
 
 	router.get("/api/articles", function(request, response){
@@ -54,7 +54,7 @@ module.exports = function(router) {
 	      query = request.query;
 	    }
 		articlesController.get(query, function (articles) { //create the "GET ALL" ARTICLE function for the articles
-			response.render("homePage", {Article_data: articles});
+			response.render("./homePage.handlebars", {Article_data: articles});
 		});
 	});
 
@@ -67,7 +67,7 @@ module.exports = function(router) {
 		articlesController.get(query, function (article) { //create the "GET ALL" ARTICLE function for the articles
 			//response.json(article);
 			//response.redirect("/articles")
-			response.render("homePage", {Article_data: article});
+			response.render("./homePage.handlebars", {Article_data: article});
 		});
 	});
 
@@ -79,7 +79,7 @@ module.exports = function(router) {
 		console.log(query); //this should return an array of the queries that are saved ==>>> where req.query.saved  === true
 	    
 		articlesController.get(query, function (savedAll) {
-			response.render("articleSaved", {Article_data: savedAll});
+			response.render("./articleSaved.handlebars", {Article_data: savedAll});
 		});
 	});
 
@@ -96,7 +96,7 @@ module.exports = function(router) {
 			});
 		}	
 		articlesController.get(query, function (savedOne) { //create the "GET ALL" ARTICLE function for the articles
-			response.render("articleSaved", {Article_data: savedOne});
+			response.render("./articleSaved.handlebars", {Article_data: savedOne});
 		});
 	});
 

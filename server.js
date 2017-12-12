@@ -30,7 +30,7 @@ app.engine("handlebars", expressHandlebars({ //ESTABLISHES THE ENGINE WITHIN APP
 }));
 app.set("view-engine", "handlebars"); //INFOMRS THE APP to USE the defined VIEW ENGINE above...
  
-app.use(logger("")) // Use morgan logger for logging requests
+app.use(logger("dev")); // Use morgan logger for logging requests
 app.use(bodyParser.urlencoded({extended: false})); // code determins how to handle form
  //submissions, the option "false" denies access to extended objects (objects whose keys have values that are 
   // addt'l objs..), and will instead return them as undefined.

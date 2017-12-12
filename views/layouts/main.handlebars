@@ -7,11 +7,14 @@
     <!-- Compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   </head>
-
+  
+  <!-- ============================================================ -->
+  <!-- ============================================================ -->
   <body>
     <div id="mainContainer" class="container-fluid">
       
@@ -27,19 +30,20 @@
         </div>
       </div>
 
+<!-- ============================================================ -->
       <nav>
         <div class="nav-wrapper">
           <a id="navHeader" href="#" class="brand-logo">The Daily News Scraper</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="/public/index.html">Home Sweet Home</a></li>
-            <li><a href="/public/saved">Article Archive</a></li>
-            <li><a id="scrapeModal" href="#">Scrape More Articles</a></li>
+            <li><a class="homeBtn" >Home Sweet Home</a></li> <!-- action="/articles" method="get" -->
+            <li><a class="savedBtn">Article Archive</a></li> 
+            <li><a class="scrapeModal" href="#">Scrape More Articles</a></li>
           </ul>
           <ul class="side-nav right-align" id="mobile-demo" style="transform: translateX(-100%);">
-            <li><a href="sass.html">Home Sweet Home</a></li>
-            <li><a href="badges.html">Article Archive</a></li>
-            <li><a id="scrapeModal" href="#">Scrape More Articles</a></li>
+            <li><a class="homeBtn">Home Sweet Home</a></li>
+            <li><a class="savedBtn">Article Archive</a></li>
+            <li><a class="scrapeModal" href="#">Scrape More Articles</a></li>
           </ul>
         </div>
         <div class="nav-wrapper">
@@ -52,40 +56,82 @@
           </form>
         </div>
       </nav>
-      
+
+  <!-- ============================================================ -->
+<!--   Page  Header -->
+      <div class="row container" style="margin-top: 50px">
+        <div class="col 10s center-align" style="float: none;">
+          <h2>Welcome to The Daily News Scraper!</h2>
+          <h4 class="grey-text text-darken-3 lighten-3">We've scraped the web to compile the top news stories of the day for you.</h4>
+          <hr>
+           <h5 class="grey-text text-darken-3 lighten-3">So go ahead, grab some coffee, browse, and comment on the articles below.</h5>
+        </div>     
+      </div>
+
+<!-- Main Page Content/Cards -->
+      <div class="parallax-container">
+        <div class="parallax"><img src="/images/coffeeImg.jpg" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
+      </div>  
+  <!-- ///////// -->
+
+      <div>
       {{{body}}}
+      </div>
 
-    </div>
+  <!-- ///////// -->
+      <div class="parallax-container">
+        <div class="parallax"><img src="/images/coffeepaperImg.jpg" style="display: block;"></div>
+      </div>
 
+    <!-- ============================================================ -->
       <!-- Modal Structure -->
     <div id="scrapeModal" class="modal">
       <div class="modal-content">
         <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <p>Modal Text...</p>
       </div>
       <div class="modal-footer">
         <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
       </div>
     </div>
 
+<!-- ============================================================ -->
     <footer class="footer">
       <div class="container">
         <p id="footer" class="center-align">The Daily News Scraper | ©Copyright 2017</p>
       </div>
     </footer>
     <!-- ============================================================ -->
-    <script src="/public/js/index.js"></script>
-    <script src="/public/js/articlesSaved.js"></script>
-<!--     <script type="text/javascript">
-        $(document).ready(function(){      
-          $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
-          $(".parallax").parallax();
-          $(".button-collapse").sideNav();
+    <!-- ============================================================ -->
+    <script src="/js/index.js"></script>
+    <script src="/js/articlesSaved.js"></script>
+    <script type="text/javascript">
 
-          $("#scrapeModal").on("click", function() {
-              $('#modal1').modal('open'); 
-          });
+      $(".homeBtn").on("click", function() {
+        $.ajax("/articles", {
+          type: "GET"
+        }).then(
+        function(){
+          console.log("Going to the 'articles' page - the Homepage..");
+        }).catch(
+        function(error){
+          if(error) throw error;
         });
-    </script> -->
+      });
+
+      $(".savedBtn").on("click", function() {
+        $.ajax("/articles/saved", {
+          type: "GET"
+        }).then(
+        function(){
+          console.log("Going to the saved-articles page..");
+        }).catch(
+        function(error){
+          if(error) throw error;
+        });
+      });
+
+    </script>
+    <!-- ============================================================ -->
   </body>
 </html>

@@ -14,5 +14,4 @@ $(document).ready(function(){
 		});	
 		//window.location.pathname = "/articles/saved"; //an alterantive
 	});
-
 });
