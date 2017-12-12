@@ -24,17 +24,18 @@ var expressHandlebars = require("express-handlebars");
 //=========================================================================================
 require("./config/routes")(router); //WHAT IS the difference bewtween using (app) and (router) ?!?!?!?! //LOCAL FILE >> //"./" signifies that the path/pathway for the file/folder required in, is found at the same level as current file.
 app.use(express.static("public"));  //serves the "PUBLIC" folder as the static folder/directory for entire app.
-app.use(router); //requires EVERY REQUEST to process through the ROUTER MIDDLEWARE >> Do we need to use this
+
+app.engine("handlebars", expressHandlebars({ //ESTABLISHES THE ENGINE WITHIN APP
+	defaultLayout: "main" //desingates the index file to reference as the root views file.
+}));
+app.set("view-engine", "handlebars"); //INFOMRS THE APP to USE the defined VIEW ENGINE above...
  
 app.use(logger("")) // Use morgan logger for logging requests
 app.use(bodyParser.urlencoded({extended: false})); // code determins how to handle form
  //submissions, the option "false" denies access to extended objects (objects whose keys have values that are 
   // addt'l objs..), and will instead return them as undefined.
 
-app.engine("handlebars", expressHandlebars({ //ESTABLISHES THE ENGINE WITHIN APP
-	defaultLayout: "main" //desingates the index file to reference as the root views file.
-}));
-app.set("view-engine", "handlebars"); //INFOMRS THE APP to USE the defined VIEW ENGINE above...
+app.use(router); //requires EVERY REQUEST to process through the ROUTER MIDDLEWARE >> Do we need to use this
 
 
 //PORT and Database Definition AND Set-up
@@ -46,7 +47,7 @@ mongoose.Promise = Promise;
 //var MONGODB_URI = "mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk";
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
-mongoose.connect(db, function(error){
+mongoose.connect(db, function(error){ // !! WHY is node calling this structure a "deprecated version," if I am using the RECOMENDED "useMongoClient," when calling ".connect"
 	if (error) throw error;
 	useMongoClient: true;
 	console.log("Mongoose connection is successful!!")

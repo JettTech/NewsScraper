@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object..
 // .., this is similar to a Sequelize model ~= to SQL Table
-var ArticleSchema = new UserSchema ({
+var ArticleSchema = new Schema ({
 		title: {
 			type: String,
 			unique: true,
@@ -38,14 +38,14 @@ var ArticleSchema = new UserSchema ({
   		saved: {
 			type: Boolean,
 			default: false
-		}
+		},
 
 		date: {
-			type: date,
+			type: Date,
 			required: false
 		}
 });
+
 var Article = mongoose.model("Article", ArticleSchema);
 
 module.exports = Article;
-
