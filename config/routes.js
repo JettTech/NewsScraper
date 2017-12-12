@@ -24,13 +24,13 @@ module.exports = function(router) {
 		articlesController.fetch(function(article){
 			//console.log("Inside the Routes.js - Posted NEW Data to the DB.");
 			if(article.insertedCount === 0 || !article){
-				res.json({
+				response.json({
 					message: "No new articles currently. Come back and try your luck again at a later time!"
 				});
 				response.status(200).end();
 			}
 			else {
-				res.json({
+				response.json({
 					message: "Nicely Done!  You just added " + article.instertedCount + " new artiles to the Homepage! \n Now go give them a visit. =D"
 				});
 				response.status(200).end();
@@ -91,7 +91,7 @@ module.exports = function(router) {
 			query.id = request.params.id;
 		}
 		else {
-			res.json({
+			response.json({
 				message: "Sorry, there are no saved articles yet."
 			});
 		}	
