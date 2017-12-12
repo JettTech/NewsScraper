@@ -43,7 +43,7 @@
           <ul class="side-nav right-align" id="mobile-demo" style="transform: translateX(-100%);">
             <li><a class="homeBtn">Home Sweet Home</a></li>
             <li><a class="savedBtn">Article Archive</a></li>
-            <li><a class="scrapeModal" href="#">Scrape More Articles</a></li>
+            <li><a class="scrapeModal" href="scrapeModal">Scrape More Articles</a></li>
           </ul>
         </div>
         <div class="nav-wrapper">
@@ -87,8 +87,8 @@
       <!-- Modal Structure -->
     <div id="scrapeModal" class="modal">
       <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>Modal Text...</p>
+        <h4>Thanks for Scraping!!</h4>
+        <p id="scrapeCount">Modal Text...</p>
       </div>
       <div class="modal-footer">
         <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
@@ -107,12 +107,20 @@
     <script src="/js/articlesSaved.js"></script>
     <script type="text/javascript">
 
+      $(".scrapeModal").on("click", function() {
+          $.get("/api/articles/fetch", function(jsonMessage) { //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
+            $("#scrapeCount").html(jsonMessage);
+            $('#scrapeModal').modal('open');
+            console.log("load was preformed.  jsonMessage = " + jsonMessage); 
+          });      
+      });
+
       $(".homeBtn").on("click", function() {
         $.ajax("/articles", {
           type: "GET"
         }).then(
         function(){
-          console.log("Going to the 'articles' page - the Homepage..");
+          console.log("Going to 'articles' - the main.handlebars page/Homepage..");
         }).catch(
         function(error){
           if(error) throw error;
@@ -120,15 +128,9 @@
       });
 
       $(".savedBtn").on("click", function() {
-        $.ajax("/articles/saved", {
-          type: "GET"
-        }).then(
-        function(){
-          console.log("Going to the saved-articles page..");
-        }).catch(
-        function(error){
-          if(error) throw error;
-        });
+        $.get("/articles/saved", function() {
+          console.log("Going to the saved-articles page...");
+        })
       });
 
     </script>
