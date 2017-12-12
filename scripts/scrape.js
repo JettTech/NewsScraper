@@ -36,11 +36,11 @@ var request = require("request"); //>>REVIEW THE PURPOSE OF THIS dependency AGAI
 	 			date: dateClean
 	 		};
 	 		console.log("These are the newsItems: " + newsItems);
-	 		results.push(newsItems);
+	 		articles.push(newsItems);
  		});
 
- 		console.log("These are the results: " + results);
- 		callback(results); //Send back the results (once processed) to the CallBack function, which is passed into the scrape function being exported as a module...
+ 		console.log("These are the results: " + articles);
+ 		callback(articles); //Send back the results (once processed) to the CallBack function, which is passed into the scrape function being exported as a module...
  	});
  	
  };
