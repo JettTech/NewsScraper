@@ -9,37 +9,61 @@ var request = require("request"); //>>REVIEW THE PURPOSE OF THIS dependency AGAI
  var scrape = function(callback) {
 
  	request("http://www.bbc.com/news/world", function(error, response, body) {
- 		//Note: above, the reference to body is the ACTUAL HTML on the page reference in the URL. This will now be loaded into the Cheerio NPM Package.
- 		var $ = cheerio.load(body); //This turns the cheerio selector into $, which is familiar through jQuery.  We can construct cheerio similar to the known jQuery through use of this "$" (shorthand) selector.
+ 		if(error) throw error;
 
+ 		//Note: above, the reference to body is the ACTUAL HTML on the page to scrape, >>referenced in the URL. This will now be loaded into the Cheerio NPM Package.
+ 		var $ = cheerio.load(body); //This turns the cheerio selector into $, which is familiar through jQuery.  We can construct cheerio similar to the known jQuery through use of this "$" (shorthand) selector.
  		var articles = []; //This will be the arrary into which we'll send all the data we'd like to scape in organized variables that relate ot the DB Fields and (their) Collections (ie: Models and Columns);
 
- 		$("div.pigeon__column pigeon__column--a").each(function(i, element) {		
- 			var img = $(element).children("pigeon-item__image").children("responsive-image").find("img").attr("src");
- 			var title = $(element).children("pigeon-item__body").find("a").find("h3").find("span").text().trim();
-	 		var link = $(element).children("pigeon-item__body").find("a").attr("href");
-	 		var description = $(element).children("pigeon-item__body").find("p").text().trim();
-	 		var date = $(element).children("pigeon-item__body").children("pigeon-item__info-list").find("ul").find("li").find("div").attr("data-datetime");
+  		$("div.responsive-image").each(function(i, element) {	
+ 			var title = $(element).parent().next().text().trim();
+ 			var img = $(element).children("img").attr("src");
+ 			var link = $(element).parent().next().find("a.title-link").attr("href");
+ 			var description = $(element).parent().next().find("p.pigeon-item__summary").text();
+	 		var aside = $(element).parent().next().next().text().trim();
 
-	 	// !! Regex >> REMOVES extra lines/Spacing/Tabs/etc.. to increase clean up data returned (ie. increase "typographical cleanliness").
-	 		var imgClean = img.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-        	var titleClean = title.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-        	var linkClean = link.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-        	var descriptionClean = description.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-        	var dateClean = date.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+        	var newsItems = {			
+	 			img: img,
+	 			title: title,
+	 			link: link,
+	 			descripton: description,
+	 			aside: aside
+	 		};
+	 		console.log("These are the newsItems: ");
+	 		console.log(newsItems);
 
-        	var newsItems = {
+	 		function cleanUp(item) {
+	 			if (item === undefined || item === "") {
+	 				return item === "none available"; //does this return as "false" instead?? >>> is that a REGEX or MONGO/MONGOOSE action??
+	 			}
+	 			else {
+	 					// !! Regex >> REMOVES extra lines/Spacing/Tabs/etc.. to increase clean up data returned (ie. increase "typographical cleanliness").
+	 				return item = item.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+	 			}
+	 		};
+	 		
+	 		var imgClean = cleanUp(img);
+	 		var titleClean = cleanUp(title);
+	 		var linkClean = cleanUp(link);
+	 		var descriptionClean = cleanUp(description);
+	 		var asideClean = cleanUp(aside);
+
+        	var cleanedItems = {
 	 			img: imgClean,
 	 			title: titleClean,
 	 			link: linkClean,
 	 			descripton: descriptionClean,
-	 			date: dateClean
+	 			aside: asideClean
 	 		};
-	 		console.log("These are the newsItems: " + newsItems);
-	 		articles.push(newsItems);
- 		});
+			console.log("\nThese are the cleanedItems: ");
+	 		console.log(cleanedItems);
+	 		console.log("\n\n");
 
- 		console.log("These are the results: " + articles);
+	 		articles.push(cleanedItems);
+ 		});
+ 		console.log("These are the scraped-article results (still inside Scrape.js): ");
+ 		console.log(articles);
+
  		callback(articles); //Send back the results (once processed) to the CallBack function, which is passed into the scrape function being exported as a module...
  	});
  	

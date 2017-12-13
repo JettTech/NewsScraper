@@ -71,3 +71,14 @@ module.exports = {
 		);
 	}
 };
+
+
+//if wished to create route that would only show notes for specfiic article:
+                // if (articleLog._id === null || articleLog._id === "" || articleLog._id === undefined) {
+                //    story.note_ID = "",
+                //    console.log("Sorry there are no Notes at this time - no NOTE ID can be found: " + data._id);
+                // } 
+                // else {
+                //     story.note_ID = articleLog._id, //VERIFY this is sendind the correct id! >> aligns with Note ID!//
+                //     console.log("we added a the Note ID to this story (article): " + story.note_ID);
+                // };

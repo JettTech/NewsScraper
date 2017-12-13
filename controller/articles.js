@@ -21,39 +21,21 @@ module.exports = {
             //the "data" here is the results ARRAY OBJECT passed as the parameter for the callback function.  The function is not being called here, and data now REFERENCES the callback parameter, hence the Articles Array Object.
 
             var articleLog = data; //name a varible to clarify what the data represents
-            console.log("This should be the article data: " + articleLog);
+            console.log("ArticleLog data (Inside the Config-article.js.).. = ");
+            console.log(articleLog);
 
             articleLog.forEach(function(story) {
                 story.saved = false; //each time we save new data in the DB, we set the saved Boolean to the default "false." //saved references a Boolean key (column) in our object model (db table)                
-
-                if (articleLog._id === null || articleLog._id === "" || articleLog._id === undefined) {
-                   story.note_ID = "",
-                   console.log("Sorry there are no Notes at this time - no NOTE ID can be found: " + data._id);
-                } 
-                else {
-                    story.note_ID = articleLog._id, //VERIFY this is sendind the correct id! >> aligns with Note ID!//
-                    console.log("we added a the Note ID to this story (article): " + story.note_ID);
-                };
-                
-
-                if (story.date === null || story.date === "" || story.date === undefined) {
-                    story.date = makeDate //assigning story.date the current date value created in the generateDate function in date.js
-                    console.log("we added a the current date to this story: " + story.date);
-                } 
-                else {
-                    console.log("this is the current story's date: " + story.date);
-                };
+                story.date = makeDate(); //This NEEDS TO BE called as a function (eveen though it's import is not named with a function invocation), because the import references the file import taht holds the function, and we would now like to invoke it...
             });
 
  	// !!!NOW POSTING THE SCRAPED DATA TO THE DATABASE!!!!!! 
             models.collection.insertMany(articleLog, { ordered: false }, function(error, docs) {
                 callback(error, docs); //PASS BOTH the error and docs from ArticleLog (the Scrape Data) into the callback function for reference and mainpulation when writing View/Display JQUERY/JS.
             });
-
             //NOTE: The use of "models.collection" below, lets us access the native Mongo "insertMany" method.
             // The strategy is to use the Mongo"insertMany" method, instead of the Mongoose "create" method because here we may
-            // specify whether this is an ordered or unordered insert >> addit'l note, we DO NOT need to require in BOTH Mongo and Mongoose when referecing these method.. only Mongoose, as it is rooted in Mongo.
-           
+            // specify whether this is an ordered or unordered insert >> addit'l note, we DO NOT need to require in BOTH Mongo and Mongoose when referecing these method.. only Mongoose, as it is rooted in Mongo.         
         });
     },
 
@@ -88,3 +70,18 @@ module.exports = {
         //the "query" here is the query in the ROUTER.JS file that was SET TO req.params.id, which specified which data we would like to DELETE in the Database. 
     },
 };
+
+
+
+
+
+//Notes and Code Changes:
+////////////////////////////////////
+        //If we were to have Scraped A Date from (some) of the New Ariticles, then we could have used this code bloc to sort thorugh it all...:
+                // if (story.date === null || story.date === "" || story.date === undefined) {
+                //     story.date = makeDate //assigning story.date the current date value created in the generateDate function in date.js
+                //     console.log("we added a the current date to this story: " + story.date);
+                // } 
+                // else {
+                //     console.log("this is the current story's date: " + story.date);
+                // };

@@ -15,13 +15,19 @@ module.exports = function(router) {
 //DEFAULT >> Route to HomePage:
 	router.get("/", function(request,response){
 		response.redirect("/articles");
-	})
+	});
 ////////////////////////////////////////////////////////////////////
 //Article Routes:
 	
 	//FETCH ROUTE >> Fetches Article:
 	router.get("/api/articles/fetch", function(request, response) { //GETS/FETCHES the new articles from the Scraper Function AND ADDS them to our DB
-		articlesController.fetch(function(article){
+		articlesController.fetch(function(error, article){
+
+			if(error) throw error;
+
+			console.log("inside ROUTES.JS - article scraped is: ");
+			console.log(article); //this is carried over from AFTER the Models Collection Insert in the Controller/articles.js
+
 			//console.log("Inside the Routes.js - Posted NEW Data to the DB.");
 			if(article.insertedCount === 0 || !article){
 				response.json({
@@ -33,7 +39,8 @@ module.exports = function(router) {
 				response.json({
 					message: "Nicely Done!  You just added " + article.instertedCount + " new artiles to the Homepage! \n Now go give them a visit. =D"
 				});
-				response.status(200).end();
+				response.redirect("/api/articles");
+				//response.status(200).end();
 			}
 		})
 	});
@@ -48,11 +55,13 @@ module.exports = function(router) {
 		response.render("./articleSaved.handlebars");
 	});
 
-	router.get("/api/articles", function(request, response){
+	router.get("/api/articles/?saved=true", function(request, response){
 		var query = {};
 	    if (request.query.saved) {
 	      query = request.query;
-	    }
+	    }//If the client specifies a saved query parameter, ie "/api/headlines/?saved=true"
+    		// which is translated to just { saved: true } on req.query, >>> then set the query object equal to the id and saved:true.
+		
 		articlesController.get(query, function (articles) { //create the "GET ALL" ARTICLE function for the articles
 			response.render("./homePage.handlebars", {Article_data: articles});
 		});
@@ -61,9 +70,7 @@ module.exports = function(router) {
 	router.get("/api/articles/:id", function(request, response){ //":" means that the URL parmeter just following IS required, but CAN vary in value (ie, it doesn't NEED to be ONE SPECIFIC value/string or charaters in order to satisfy this parameter call...)
 		var query = {};
 		query.id = request.params.id;
-		if(request.query.saved){
-			query = request.query;
-		}
+
 		articlesController.get(query, function (article) { //create the "GET ALL" ARTICLE function for the articles
 			//response.json(article);
 			//response.redirect("/articles")

@@ -1,17 +1,19 @@
-$(document).ready(function(){      
-	$("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
-	$(".parallax").parallax();
-	$(".button-collapse").sideNav();
+$(document).ready(function(event){      
+	event.preventDefault();
 
-	$("#scrapeModal").on("click", function() {
-	    $('#modal1').modal('open'); 
-	});
+	// $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
+	// $(".parallax").parallax();
+	// $(".button-collapse").sideNav();
 
 	$("#editNoteModal").on("click", function() {
-		$.get("/articles/saved", function(error, data) {
+		note_id = this._id //this should reprsent the note that is being pressed...
+		article_id = this.parent._id //can we do this to find AND represent the parent (in this case, the Article's) id????!?!??!
+		
+		$.get("/api/articles/:id" + note_id, function(error, data) {
 			if (error) throw error;
-			console.log("we're going to the saved-articles page");
+			console.log("we're going to the article-edit page");
 		});	
-		//window.location.pathname = "/articles/saved"; //an alterantive
+		//window.location.pathname = "/articles/saved"; //an alternative
 	});
+
 });

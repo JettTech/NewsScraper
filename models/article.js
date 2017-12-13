@@ -20,20 +20,24 @@ var ArticleSchema = new Schema ({
 			required: true
 		},
 
-		descriptionShort: {
+		description: {
 			type: String,
 			required: true
 		},
 
-		descriptionFull: String,
-
-		note_ID: { //can I import the Note ID here... AND import the ID for the article in the Notes Schmea?
-			type: Schema.Types.ObjectId,
-			ref: "Note"
-		},
-		  // `Note` is an Mongoose object (model), and therefore stores its own Note id
+		// note_ID: { //can I import the Note ID here... AND import the ID for the article in the Notes Schmea?
+		// 	type: Schema.Types.ObjectId,
+		// 	ref: "Note"
+		// },
+		  // `Note` is an Mongoose object (model), and therefore creates and stores a Note_id for every object on the Note Model.
   			// The ref property links the ObjectId to the Note model
   				// This allows us to populate the Article with an associated Note Model
+
+  		aside: {
+			type: String,
+			required: false,
+			default: ""
+		},
 
   		saved: {
 			type: Boolean,
@@ -45,7 +49,6 @@ var ArticleSchema = new Schema ({
 			required: false
 		}
 });
-
 var Article = mongoose.model("Article", ArticleSchema);
 
 module.exports = Article;

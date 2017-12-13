@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Daily News Scraper</title>   
+    
     <!-- Compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -38,12 +40,12 @@
           <ul class="right hide-on-med-and-down">
             <li><a class="homeBtn" >Home Sweet Home</a></li> <!-- action="/articles" method="get" -->
             <li><a class="savedBtn">Article Archive</a></li> 
-            <li><a class="scrapeModal" href="#">Scrape More Articles</a></li>
+            <li><a class="scrapeModal" href="#scrapeModal">Scrape More Articles</a></li> <!-- href="scrapeModal" -->
           </ul>
           <ul class="side-nav right-align" id="mobile-demo" style="transform: translateX(-100%);">
             <li><a class="homeBtn">Home Sweet Home</a></li>
             <li><a class="savedBtn">Article Archive</a></li>
-            <li><a class="scrapeModal" href="scrapeModal">Scrape More Articles</a></li>
+            <li><a class="scrapeModal" href="#scrapeModal">Scrape More Articles</a></li>
           </ul>
         </div>
         <div class="nav-wrapper">
@@ -61,7 +63,7 @@
 <!--   Page  Header -->
       <div class="row container" style="margin-top: 50px">
         <div class="col 10s center-align" style="float: none;">
-          <h2>Welcome to The Daily News Scraper!</h2>
+          <h2><strong>Welcome to The Daily News Scraper!</strong></h2>
           <h4 class="grey-text text-darken-3 lighten-3">We've scraped the web to compile the top news stories of the day for you.</h4>
           <hr>
            <h5 class="grey-text text-darken-3 lighten-3">So go ahead, grab some coffee, browse, and comment on the articles below.</h5>
@@ -88,10 +90,10 @@
     <div id="scrapeModal" class="modal">
       <div class="modal-content">
         <h4>Thanks for Scraping!!</h4>
-        <p id="scrapeCount">Modal Text...</p>
+        <p class="scrapeCount">Modal Text...</p>
       </div>
       <div class="modal-footer">
-        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
       </div>
     </div>
 
@@ -106,32 +108,46 @@
     <script src="/js/index.js"></script>
     <script src="/js/articlesSaved.js"></script>
     <script type="text/javascript">
+    $(document).ready(function(event){
+      event.preventDefault();
 
-      $(".scrapeModal").on("click", function() {
-          $.get("/api/articles/fetch", function(jsonMessage) { //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
-            $("#scrapeCount").html(jsonMessage);
-            $('#scrapeModal').modal('open');
-            console.log("load was preformed.  jsonMessage = " + jsonMessage); 
-          });      
+      $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
+      $(".parallax").parallax();
+      $(".button-collapse").sideNav()
+
+
+      $(".scrapeModal").on("click", function() {  
+          // $.get("/api/articles/fetch", function(jsonMessage) { //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
+            
+          //   // $("#scrapeModal").modal("open"); //this ref OR the reference to the modal
+          //     //above SHOULD work... BUT neither do.. resarech.. 
+          //   $(".scrapeCount").html(jsonMessage); //shis should DISPLAY the json message (inside the modal.)   
+
+          //   console.log("load was preformed.  jsonMessage = ");
+          //   console.log(jsonMessage); 
+          // });      
       });
 
       $(".homeBtn").on("click", function() {
-        $.ajax("/articles", {
-          type: "GET"
-        }).then(
-        function(){
-          console.log("Going to 'articles' - the main.handlebars page/Homepage..");
-        }).catch(
-        function(error){
-          if(error) throw error;
-        });
+        window.location.pathname = "/articles";
+        //WHY DOESN'T THE "GET" CALL WORK HERE?!?!?!?
+        // $.ajax("/articles", {
+        //   type: "get"
+        // }).then(
+        // function(){
+        //   console.log("Going to 'articles' - the main.handlebars page/Homepage..");
+        // }).catch(
+        // function(error){
+        //   if(error) throw error;
+        // });
       });
 
       $(".savedBtn").on("click", function() {
-        $.get("/articles/saved", function() {
-          console.log("Going to the saved-articles page...");
-        })
+        //WHY DOESN'T THE "GET" CALL WORK HERE?!?!?!?
+        window.location.pathname = "/articles/saved";
       });
+
+    })
 
     </script>
     <!-- ============================================================ -->
