@@ -27,52 +27,59 @@
           </div>
           
           <!-- ////////////// Card BODY STARTS HERE!! //////////////-->
-          {{#each Article_data}} <!-- !! make sure this is the correct object name to call !! -->
+          {{#if Article_data}}
+            {{#each Article_data}} <!-- !! make sure this is the correct object name to call !! -->
 
-            <div class="col s10 offset-s1">
-              <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                  <img id="articleImg" class="activator" src= {{this.img}}> <!-- DEFAULT: "/public/images/exampleNewImg.jpg" -->
-                </div>
-                <!-- Card AbbrvContent!! -->
-                <div class="card-content">
-                  <span id="articleTitle" class="card-title activator grey-text text-darken-4">{{this.title}} - Card Title<i class="material-icons right">more_vert</i></span>
-                  <p>{{this.descriptionShort}} - Short Desription </p>
-                  <p><a href="#"> {{this.link}} - Link to the article source.</a></p>
-                </div>
-                <!-- END of Card AbbrvContent!! -->
-                <!-- Main Card Content (Card Reveal Content)!! -->
-                <div class="card-reveal">
-                  <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h3> {{this.title}} - Card Title</h3><i class="material-icons right">close</i></span>
-                  <p id="articleDescription"> {{this.descriptionFull}} - Article Description.</p>
-                  <hr/>
-                  <h3>Comments:</h5>
-                  {{#if this.notes}}
-                    <p>{{this.0.notes}}</p> 
-                    <p>{{this.1.notes}}</p>
-                    <p>Wish to see more comments, or even add your own?  Click on the "edit" button to your right to view additional a comment and/or share your note.</p>
-                        
-                  {{else}}
-                    <h5>Be the first to comment.  Click on the "edit" button to your right and share your thoughts!!</h5>>
-                  {{/if}}
-
-                 <!--  Card Buttons >> add quote/delete -->
-                  <div class="fixed-action-btn horizontal">
-                    <a class="btn-floating btn-large red">
-                      <i class="large material-icons">mode_edit</i>
-                    </a>
-                    <ul>
-                      <li><a id="deleteNote" class="btn-floating red"><i class="material-icons">clear</i></a></li>
-                      <li><a id="editNoteModal" class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
-                    </ul>
+              <div class="col s10 offset-s1">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img id="articleImg" class="activator" src= {{this.img}}> <!-- DEFAULT: "/public/images/exampleNewImg.jpg" -->
                   </div>
-                  <!--  End of Card Buttons -->
-                </div>
-                <!-- End of Card Reveal Content! -->
-              </div>       
-            </div>
+                  <!-- Card AbbrvContent!! -->
+                  <div class="card-content">
+                    <span id="articleTitle" class="card-title activator grey-text text-darken-4">{{this.title}} - Card Title<i class="material-icons right">more_vert</i></span>
+                    <p>{{this.descriptionShort}} - Short Desription </p>
+                    <p><a href="#"> {{this.link}} - Link to the article source.</a></p>
+                  </div>
+                  <!-- END of Card AbbrvContent!! -->
+                  <!-- Main Card Content (Card Reveal Content)!! -->
+                  <div class="card-reveal">
+                    <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h3> {{this.title}} - Card Title</h3><i class="material-icons right">close</i></span>
+                    <p id="articleDescription"> {{this.descriptionFull}} - Article Description.</p>
+                    <hr/>
+                    <h5>Comments:</h5>
+                    {{#if this.notes}}
+                      <p>{{this.0.notes}}</p> 
+                      <p>{{this.1.notes}}</p>
+                      <p>Wish to see more comments, or even add your own?  Click on the "edit" button to your right to view additional a comment and/or share your note.</p>
+                          
+                    {{else}}
+                      <h5>Be the first to comment.  Click on the "edit" button to your right and share your thoughts!!</h5>
+                    {{/if}}
 
-          {{/each}} 
+                   <!--  Card Buttons >> add quote/delete -->
+                    <div class="fixed-action-btn horizontal">
+                      <a class="btn-floating btn-large red">
+                        <i class="large material-icons">mode_edit</i>
+                      </a>
+                      <ul>
+                        <li><a id="deleteNote" class="btn-floating red"><i class="material-icons">clear</i></a></li>
+                        <li><a id="editNoteModal" class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
+                      </ul>
+                    </div>
+                    <!--  End of Card Buttons -->
+                  </div>
+                  <!-- End of Card Reveal Content! -->
+                </div>       
+              </div>
+
+            {{/each}}
+            {{else}}
+              
+              <br/>
+              <h5>There are no saved articles at this time.  What better time to make your imprint?  Go ahead and mark an aritlce to save, and be the first to store a favorite!</h5>
+
+          {{/if}}
          <!-- /////// Card BODY ENDS HERE!! /////// -->
         </div>
       </div>

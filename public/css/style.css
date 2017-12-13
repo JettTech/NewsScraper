@@ -39,3 +39,7 @@
         top: 100px;
         margin-bottom: 20px;
       }
+
+      .row .col.offset-s1{
+        margin-left: 6.333%;
+      }

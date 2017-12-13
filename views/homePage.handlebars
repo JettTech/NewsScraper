@@ -20,8 +20,9 @@
       <div class="section white">
         <div class="row container">         
           <div class="col s12">
-             <h3 class="header center-align"><strong>Articles</strong></h3>
-             <hr/> 
+             <!-- <h3 class="header center-align"><strong>Articles</strong></h3> -->
+             <!-- <hr/> 
+             <br/> -->
           </div>
           
           <!-- ////////////// Card BODY STARTS HERE!! //////////////-->
@@ -35,16 +36,18 @@
                 <!-- Card AbbrvContent!! -->
                 <div class="card-content">
                   <span id="articleTitle" class="card-title activator grey-text text-darken-4">{{this.title}} - Card Title<i class="material-icons right">more_vert</i></span>
-                  <p>{{this.descriptionShort}} - Short Desription </p>
-                  <p><a href="#"> {{this.link}} - Link to the article source.</a></p>
+                  <!-- <p>{{this.descriptionShort}} - Short Desription </p> -->
+                  <p><a href="{{this.link}}" - Link to the article source.</a></p>
                 </div>
                 <!-- END of Card AbbrvContent!! -->
+
                 <!-- Main Card Content (Card Reveal Content)!! -->
                 <div class="card-reveal">
-                  <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h3> {{this.title}} - Card Title</h3><i class="material-icons right">close</i></span>
-                  <p id="articleDescription"> {{this.descriptionFull}} - Article Description.</p>
+                  <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h5><strong> {{this.title}} - Card Title</strong></h5><i class="material-icons right close">close</i></span>
+                  <h6 id="articleDescription"> {{this.descriptionFull}} - Article Description.</h6>
+                  <br/>
                   <hr/>
-                  <h3>Comments:</h5>
+                  <h5><strong>Comments:</strong></h5>
                   {{#if this.notes}}
                   
                     <p>{{this.0.notes}}</p> 
@@ -52,19 +55,16 @@
                     <p>Wish to see more comments, or even add your own?  Click on the "edit" button to your right to view additional a comment and/or share your note.</p>
                         
                   {{else}}
-                    <h5>Be the first to comment.  Click on the "edit" button to your right and share your thoughts!!</h5>>
+
+                    <p>Be the first to comment.  Click on the "edit" button to your right and share your thoughts!!</p>>
 
                   {{/if}}
 
                  <!--  Card Buttons >> add quote/delete -->
-                  <div class="fixed-action-btn horizontal">
+                  <div id="editNoteModal" class="fixed-action-btn horizontal">
                     <a class="btn-floating btn-large red">
                       <i class="large material-icons">mode_edit</i>
                     </a>
-                    <ul>
-                      <li><a id="deleteNote" class="btn-floating red"><i class="material-icons">clear</i></a></li>
-                      <li><a id="editNoteModal" class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
-                    </ul>
                   </div>
                   <!--  End of Card Buttons -->
                 </div>

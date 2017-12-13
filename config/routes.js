@@ -79,7 +79,7 @@ module.exports = function(router) {
 	});
 
 
-	router.get("/articles/saved", function(request, response){ //get ALL SAVED articles
+	router.get("/api/articles/saved", function(request, response){ //get ALL SAVED articles
 		var query = request.filter(function(queryDoc){
 			queryDoc === query.saved;
 		});
@@ -117,7 +117,7 @@ module.exports = function(router) {
 
 		articlesController.update(error, query, function(error, article){
 			if (error) throw error;
-			response.json(article);
+			response.json(article);v//updating the db
 			console.log("Inside the Routes.js - Updated the following article in DB with new Query: " + article);		
 			response.status(200).end();
 		})
@@ -130,7 +130,7 @@ module.exports = function(router) {
 
 		articlesController.delete(query, function(error, article) { //>>> THE REQUEST.PARAMS.ID is pased into the query here by making the query.id equal to the URL ID (the request.params.id);
 			if (error) throw error;
-			response.json(article);
+			response.json(article);v//updating the db
 			console.log("Inside the Routes.js - Deleted the article from DB: " + article);			
 			response.status(200).end();
 		})
@@ -150,7 +150,7 @@ module.exports = function(router) {
     		//...otherwise the query will remain an empty object and thus refernce (and thereby return) every note when passed into the following function for precessing (on the controller.js page); 
 		notesController.get(query, function (error, notes) { //create the "GET ALL" ARTICLE function for the articles, while on the Homepage
 			if (error) throw error;
-			response.json(notes);
+			response.render("./articleSaved.handlebars", {Article_data: notes});
 			console.log("Inside the Routes.js - called a note by ID from DB: " + notes);		
 		})
 	});
@@ -164,7 +164,8 @@ module.exports = function(router) {
     		//...otherwise the query will remain an empty object and thus refernce (and thereby return) every note when passed into the following function for precessing (on the controller.js page); 
 		notesController.getOne(query, function (error, notes) { //create the "GET ALL" ARTICLE function for the articles, while on the Homepage
 			if (error) throw error;
-			response.json(notes);
+			//response.json(notes);
+			response.render("./articleSaved.handlebars", {Article_data: notes});
 			console.log("Inside the Routes.js - called a note by ID from DB: " + notes);		
 		})
 	});
