@@ -40,12 +40,12 @@
           <ul class="right hide-on-med-and-down">
             <li><a class="homeBtn" >Home Sweet Home</a></li> <!-- action="/articles" method="get" -->
             <li><a class="savedBtn">Article Archive</a></li> 
-            <li><a class="scrapeModal" href="#scrapeModal">Scrape More Articles</a></li> <!-- href="scrapeModal" -->
+            <li><a class="scrapeModal">Scrape More Articles</a></li> <!-- href="scrapeModal" -->
           </ul>
           <ul class="side-nav right-align" id="mobile-demo" style="transform: translateX(-100%);">
             <li><a class="homeBtn">Home Sweet Home</a></li>
             <li><a class="savedBtn">Article Archive</a></li>
-            <li><a class="scrapeModal" href="#scrapeModal">Scrape More Articles</a></li>
+            <li><a class="scrapeModal">Scrape More Articles</a></li>
           </ul>
         </div>
         <div class="nav-wrapper">
@@ -76,7 +76,59 @@
       </div>  
   <!-- ///////// -->
 
+<!-- BODY -->
       <div>
+    <!-- /////////////////////    START OF VISUAL CARD EXAMPLE    /////////////////////////////////////////////////// -->
+        <div class="section white">
+          <div class="row container">         
+            <div class="col s12">
+               <h3 class="header center-align"><strong>Articles</strong></h3>
+               <hr/> 
+            </div>      
+            <!-- ////////////// Card BODY STARTS HERE!! //////////////-->
+              <div class="col s10 offset-s1">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img id="articleImg" class="activator" src="/public/images/exampleNewImg.jpg">
+                  </div>
+                  <!-- Card AbbrvContent!! -->
+                  <div class="card-content">
+                    <span id="articleTitle" class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    <p>Short Desription </p>
+                    <p><a href="#"> Link to the article source.</a></p>
+                  </div>
+                  <!-- END of Card AbbrvContent!! -->
+                  <!-- Main Card Content (Card Reveal Content)!! -->
+                  <div class="card-reveal">
+                    <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h3> Card Title</h3><i class="material-icons right">close</i></span>
+                    <p id="articleDescription">Article Description.</p>
+                    <hr/>
+                    <h3>Comments:</h5>                  
+                      <p>notes #1</p> 
+                      <p>notes #2</p>
+                      <p>Wish to see more comments, or even add your own?  Click on the "edit" button to your right to view additional a comment and/or share your note.</p>
+
+                      <h5>Be the first to comment.  Click on the "edit" button to your right and share your thoughts!!</h5>>
+                   <!--  Card Buttons >> add quote/delete -->
+                    <div class="fixed-action-btn horizontal">
+                      <a class="btn-floating btn-large red">
+                        <i class="large material-icons">mode_edit</i>
+                      </a>
+                      <ul>
+                        <li><a id="deleteNote" class="btn-floating red"><i class="material-icons">clear</i></a></li>
+                        <li><a id="editNoteModal" class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
+                      </ul>
+                    </div>
+                    <!--  End of Card Buttons -->
+                  </div>
+                  <!-- End of Card Reveal Content! -->
+                </div>       
+              </div>
+            <!-- /////// Card BODY ENDS HERE!! /////// -->
+          </div>
+        </div>
+  <!-- ///////////////////    END OF VISUAL CARD EXAMPLE    /////////////////////////// -->     
+
       {{{body}}}
       </div>
 
@@ -109,7 +161,7 @@
     <script src="/js/articlesSaved.js"></script>
     <script type="text/javascript">
     $(document).ready(function(event){
-      event.preventDefault();
+      //event.preventDefault(); // !!! why doesn't THIS WORK???
 
       $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
       $(".parallax").parallax();
@@ -117,15 +169,15 @@
 
 
       $(".scrapeModal").on("click", function() {  
-          // $.get("/api/articles/fetch", function(jsonMessage) { //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
+          $.get("/api/articles/fetch", function(jsonMessage) { //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
             
-          //   // $("#scrapeModal").modal("open"); //this ref OR the reference to the modal
-          //     //above SHOULD work... BUT neither do.. resarech.. 
-          //   $(".scrapeCount").html(jsonMessage); //shis should DISPLAY the json message (inside the modal.)   
+            $("#scrapeModal").modal("open"); //this ref OR the reference to the modal
+              //above SHOULD work... BUT neither do.. resarech.. 
+            $(".scrapeCount").html(jsonMessage); //shis should DISPLAY the json message (inside the modal.)   
 
-          //   console.log("load was preformed.  jsonMessage = ");
-          //   console.log(jsonMessage); 
-          // });      
+            console.log("load was preformed.  jsonMessage = ");
+            console.log(jsonMessage); 
+          });      
       });
 
       $(".homeBtn").on("click", function() {

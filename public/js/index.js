@@ -1,5 +1,5 @@
 $(document).ready(function(event){      
-	event.preventDefault();
+	//event.preventDefault(); // !!! why doesn't THIS WORK???
 
 	// $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
 	// $(".parallax").parallax();
