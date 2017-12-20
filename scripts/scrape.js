@@ -29,8 +29,8 @@ var request = require("request"); //>>REVIEW THE PURPOSE OF THIS dependency AGAI
 	 			descripton: description,
 	 			aside: aside
 	 		};
-	 		console.log("These are the newsItems: ");
-	 		console.log(newsItems);
+	 		// console.log("These are the newsItems: ");
+	 		// console.log(newsItems);
 
 	 		function cleanUp(item) {
 	 			if (item === undefined || item === "") {
@@ -55,14 +55,14 @@ var request = require("request"); //>>REVIEW THE PURPOSE OF THIS dependency AGAI
 	 			descripton: descriptionClean,
 	 			aside: asideClean
 	 		};
-			console.log("\nThese are the cleanedItems: ");
-	 		console.log(cleanedItems);
-	 		console.log("\n\n");
+			// console.log("\nThese are the cleanedItems: ");
+	 		// console.log(cleanedItems);
+	 		// console.log("\n\n");
 
 	 		articles.push(cleanedItems);
  		});
  		console.log("These are the scraped-article results (still inside Scrape.js): ");
- 		console.log(articles);
+ 		// console.log(articles);
 
  		callback(articles); //Send back the results (once processed) to the CallBack function, which is passed into the scrape function being exported as a module...
  	});

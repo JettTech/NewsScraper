@@ -7,6 +7,7 @@ var scrape = require("../scripts/scrape.js");
 // importing the controller files:
 var articlesController = require("../controller/articles.js");
 var notesController = require("../controller/notes.js");
+var scrape = require("../scripts/scrape"); //the scraped data from the website
 
 
 //Routes:
@@ -21,10 +22,51 @@ module.exports = function(router) {
 	
 	//FETCH ROUTE >> Fetches Article:
 	router.get("/api/articles/fetch", function(request, response) { //GETS/FETCHES the new articles from the Scraper Function AND ADDS them to our DB
-		articlesController.fetch(function(error, article){
+		//new promise (requesting scrape info)
+		//with the resolve of the promise, do this
 
-			if(error) throw error;
 
+		scrape(function(data) {
+            //the "data" here is the results ARRAY OBJECT passed as the parameter for the callback function.  The function is not being called here, and data now REFERENCES the callback parameter, hence the Articles Array Object.
+            //console.log(data);
+            var articleLog = data; //name a varible to clarify what the data represents
+            // console.log("ArticleLog data (Inside the Config-article.js.).. = ");
+            // console.log(articleLog);
+
+            articleLog.forEach(function(story) {
+                story.saved = false; //each time we save new data in the DB, we set the saved Boolean to the default "false." //saved references a Boolean key (column) in our object model (db table)                
+                story.date = makeDate(); //This NEEDS TO BE called as a function (eveen though it's import is not named with a function invocation), because the import references the file import taht holds the function, and we would now like to invoke it...
+            });
+
+            // !!!NOW POSTING THE SCRAPED DATA TO THE DATABASE!!!!!! 
+            try {
+                models.collection.insertMany(articleLog);
+            } catch (error) {
+                console.log("Error is "+ error);
+            }
+
+
+            // models.collection.insertMany(articleLog, { ordered: false }, function(error, docs) {
+            //     // console.log("test");
+            //     if(error){
+            //         console.log("error was sent : "+ error);
+            //     }
+            //     callback(error, docs); //PASS BOTH the error and docs from ArticleLog (the Scrape Data) into the callback function for reference and mainpulation when writing View/Display JQUERY/JS.
+            // });
+
+
+             console.log("Finished writing");
+            //NOTE: The use of "models.collection" below, lets us access the native Mongo "insertMany" method.
+            // The strategy is to use the Mongo"insertMany" method, instead of the Mongoose "create" method because here we may
+            // specify whether this is an ordered or unordered insert >> addit'l note, we DO NOT need to require in BOTH Mongo and Mongoose when referecing these method.. only Mongoose, as it is rooted in Mongo.         
+        });
+
+		if(error) {
+				console.log("Error in routes.config = " + error);
+				throw error;
+			}
+
+			//.then with the resolve of the promise, do this
 			console.log("inside ROUTES.JS - article scraped is: ");
 			console.log(article); //this is carried over from AFTER the Models Collection Insert in the Controller/articles.js
 
@@ -42,7 +84,37 @@ module.exports = function(router) {
 				response.redirect("/api/articles");
 				//response.status(200).end();
 			}
-		})
+
+
+
+
+		// articlesController.fetch(function(error, article){ 
+
+		// 	if(error) {
+		// 		console.log("Error in routes.config = " + error);
+		// 		throw error;
+		// 	}
+
+		// 	//.then with the resolve of the promise, do this
+		// 	console.log("inside ROUTES.JS - article scraped is: ");
+		// 	console.log(article); //this is carried over from AFTER the Models Collection Insert in the Controller/articles.js
+
+		// 	//console.log("Inside the Routes.js - Posted NEW Data to the DB.");
+		// 	if(article.insertedCount === 0 || !article){
+		// 		response.json({
+		// 			message: "No new articles currently. Come back and try your luck again at a later time!"
+		// 		});
+		// 		response.status(200).end();
+		// 	}
+		// 	else {
+		// 		response.json({
+		// 			message: "Nicely Done!  You just added " + article.instertedCount + " new artiles to the Homepage! \n Now go give them a visit. =D"
+		// 		});
+		// 		response.redirect("/api/articles");
+		// 		//response.status(200).end();
+		// 	}
+		// });
+
 	});
 
 //---------------------
