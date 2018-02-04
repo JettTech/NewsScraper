@@ -1,7 +1,7 @@
 # NewsScraper
 A web scraping tool that uses Cheerio and MongoDB to scrape, store, and post responses to news articles found on the web.
 
-View the application [here](http://lisajetton.com)!
+View the application [here](https://jetttech.github.io/NewsScraper/)!
 
 Built by [Lisa Jetton](https://github.com/JettTech/).
 
