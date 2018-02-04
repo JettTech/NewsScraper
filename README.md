@@ -6,3 +6,4 @@ View the application [here](http://lisajetton.com)!
 Built by [Lisa Jetton](https://github.com/JettTech/).
 
 ![](https://media.giphy.com/media/2uRXbYiayfKP6/giphy.gif)
+
