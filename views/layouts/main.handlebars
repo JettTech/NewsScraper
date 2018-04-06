@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Daily News Scraper</title>   
@@ -9,30 +9,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  </head>
+</head>
   
-  <!-- ============================================================ -->
-  <!-- ============================================================ -->
-  <body>
+<body>
     <div id="mainContainer" class="container-fluid">
-      
-      <div id="spinWheel" class="preloader-wrapper big active justify-content-center" style="display: none;">
-        <div class="spinner-layer spinner-blue">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
-
-<!-- ============================================================ -->
       <nav>
         <div class="nav-wrapper">
           <a id="navHeader" href="#" class="brand-logo">The Daily News Scraper</a>
@@ -59,8 +39,9 @@
         </div>
       </nav>
 
-  <!-- ============================================================ -->
-<!--   Page  Header -->
+<!-- ================================================== -->
+<!-- Page Header Starts -->
+<!-- ================================================== -->
       <div class="row container" style="margin-top: 50px">
         <div class="col 10s center-align" style="float: none;">
           <h2><strong>Welcome to The Daily News Scraper!</strong></h2>
@@ -69,154 +50,35 @@
            <h5 class="grey-text text-darken-3 lighten-3">So go ahead, grab some coffee, browse, and comment on the articles below.</h5>
         </div>     
       </div>
+<!-- ================================================== -->
+<!-- Page Header Ends -->
+<!-- ================================================== -->
 
-<!-- Main Page Content/Cards -->
       <div class="parallax-container">
         <div class="parallax"><img src="/images/coffeeImg.jpg" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
-      </div>  
-  <!-- ///////// -->
+      </div>
 
-<!-- BODY -->
+<!-- ================================================== -->
+<!-- Article Display Starts -->
+<!-- ================================================== -->
       <div>
-    <!-- ///////////////////// 1.) START OF (#1) VISUAL CARD EXAMPLE    /////////////////////////////////////////////////// -->
-        <div class="section white">
-          <div class="row container">         
-            <div class="col s12">
-               <h3 class="header center-align"><strong>Articles</strong></h3>
-               <hr/> 
-               <br/>
-            </div>      
 
-            <!-- ////////////// Card BODY STARTS HERE!! //////////////-->
-              <div class="col s5 offset-s1">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img id="articleImg" class="activator" src="/images/exampleNewImg.jpg">
-                  </div>
-                  <!-- Card AbbrvContent!! -->
-                  <div class="card-content">
-                    <span id="articleTitle" class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    <!-- <p>Short Desription </p> -->
-                    <p><a href="#"> Link to the article source.</a></p>
-                  </div>
-                  <!-- END of Card AbbrvContent!! -->
-                  <!-- Main Card Content (Card Reveal Content)!! -->
-                  <div class="card-reveal">
-                  <!--  Card Buttons >> add quote/delete -->
-                    <span>
-                      <div class="fixed-action-btn horizontal">
-                        <a class="btn-floating btn-large red">
-                          <i class="large material-icons">mode_edit</i>
-                        </a>
-                        <ul>
-                          <li><a id="deleteNote" class="btn-floating red"><i class="material-icons">clear</i></a></li>
-                          <li><a id="editNoteModal" class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
-                        </ul>
-                      </div>                         
-                    </span>
-                    <!--  End of Card Buttons -->
-                    <i class="material-icons right">close</i>
-                    <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h5><strong>Card Title</strong></h5></span>
-                    <h6 id="articleDescription">Article Description.</h6>
-                    <br/>
-                    <hr/>
-                      <p>Click on the "edit" button to your right and share your thoughts and see others!</p>
-                  </div>
-                  <!-- End of Card Reveal Content! -->
-                </div>       
-              </div>
-            <!-- /////// Card BODY (#1) ENDS HERE!! /////// -->
-
-           <!-- ////////////// 2.) Card BODY (#2) STARTS HERE !! //////////////-->
-              <div class="col s5 offset-s1">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img id="articleImg" class="activator" src="/images/exampleNewImg.jpg">
-                  </div>
-                  <!-- Card AbbrvContent!! -->
-                  <div class="card-content">
-                    <span id="articleTitle" class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    <!-- <p>Short Desription </p> -->
-                    <p><a href="#"> Link to the article source.</a></p>
-                  </div>
-                  <!-- END of Card AbbrvContent!! -->
-                  <!-- Main Card Content (Card Reveal Content)!! -->
-                  <div class="card-reveal">
-                  <!--  Card Buttons >> add quote/delete -->
-                    <span>
-                      <div id="editNoteModal" class="fixed-action-btn horizontal">
-                        <a class="btn-floating btn-large red">
-                          <i class="large material-icons">mode_edit</i>
-                        </a>
-                      </div>                         
-                    </span>
-                    <!--  End of Card Buttons -->
-                    <i class="material-icons right close">close</i>
-                    <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h5><strong>Card Title</strong></h5></span>
-                    <h6 id="articleDescription">Article Description.</h6>
-                    <br/>
-                    <hr/>
-                      <p>Click on the "edit" button to your right and share your thoughts and see others!</p>
-                  </div>
-                  <!-- End of Card Reveal Content! -->
-                </div>       
-              </div>
-              <!-- /////// Card BODY (#2) ENDS HERE !! /////// -->
-
-
-
-             <!-- ////////////// 3.) Card BODY (#3) STARTS HERE !! //////////////-->
-              <div class="col s5 offset-s1">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img id="articleImg" class="activator" src="/images/exampleNewImg.jpg">
-                  </div>
-                  <!-- Card AbbrvContent!! -->
-                  <div class="card-content">
-                    <span id="articleTitle" class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p>Short Desription </p>
-                    <p><a href="#"> Link to the article source.</a></p>
-                  </div>
-                  <!-- END of Card AbbrvContent!! -->
-                  <!-- Main Card Content (Card Reveal Content)!! -->
-                  <div class="card-reveal">
-                  <!--  Card Buttons >> add quote/delete -->
-                    <span>
-                      <div id="editNoteModal" class="fixed-action-btn horizontal">
-                        <a class="btn-floating btn-large red">
-                          <i class="large material-icons">mode_edit</i>
-                        </a>
-                      </div>                         
-                    </span>
-                    <!--  End of Card Buttons -->
-                    <i class="material-icons right close">close</i>
-                    <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h5><strong>Card Title</strong></h5></span>
-                    <h6 id="articleDescription">Article Description.</h6>
-                    <br/>
-                    <hr/>
-                      <p>Click on the "edit" button to your right and share your thoughts and see others!</p>
-                  </div>
-                  <!-- End of Card Reveal Content! -->
-                </div>       
-              </div>
-              <!-- /////// Card BODY (#3) ENDS HERE !! /////// -->
-
-          </div>
-        </div>
-
-        <p class="center-align"><u>The text above is a placeholder to visualize the cards that will be dynamically filled with the scrpaed news... REMOVE THE ABOVE "CARD CODE" when ready...</u></p>
-  <!-- ///////////////////    END OF VISUAL CARD EXAMPLE    /////////////////////////// -->     
-      
-      {{{body}}}
+        {{{body}}}
+        
       </div>
-
   <!-- ///////// -->
+
+<!-- ================================================== -->
+<!-- Article Display Ends -->
+<!-- ================================================== -->
+
       <div class="parallax-container">
-        <div class="parallax"><img src="/images/coffeepaperImg.jpg" style="display: block;"></div>
+        <div class="parallax"><img src="/images/coffeepaperImg.jpg" style="display: block;"/></div>
       </div>
 
-    <!-- ============================================================ -->
-      <!-- Modal Structure -->
+<!-- ================================================== -->
+<!-- Modal Structure Starts -->
+<!-- ================================================== -->
     <div id="scrapeModal" class="modal">
       <div class="modal-content">
         <h4>Thanks for Scraping!!</h4>
@@ -226,26 +88,37 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
       </div>
     </div>
+<!-- ================================================== -->
+<!-- Modal Structure Ends -->
+<!-- ================================================== -->
 
-<!-- ============================================================ -->
+<!-- ================================================== -->
+<!-- Footer Starts -->
+<!-- ================================================== -->
     <footer class="footer">
       <div class="container">
         <p id="footer" class="center-align">The Daily News Scraper | ©Copyright 2017</p>
       </div>
     </footer>
-    <!-- ============================================================ -->
-    <!-- ============================================================ -->
-    <script src="/js/index.js"></script>
-    <script src="/js/articlesSaved.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(event){
-      //event.preventDefault(); // !!! why doesn't THIS WORK???
+<!-- ================================================== -->
+<!-- Footer Ends -->
+<!-- ================================================== -->
 
-      $("#spinWheel").hide(); //CHnage this to .SHOW THIS WHENEVER AN EVENT IS TAKING TOO LONG!!
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  
+  <!-- Local JS Files -->
+  <script src="/js/index.js"></script>
+  <script src="/js/articlesSaved.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(event){
+      event.preventDefault(); 
       $(".parallax").parallax();
       $(".button-collapse").sideNav();
-      //$(".close").close();
 
+      //$(".close").close();
 
       $(".scrapeModal").on("click", function() {  
           $.get("/api/articles/fetch") //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
@@ -262,6 +135,7 @@
       $(".homeBtn").on("click", function() {
         window.location.pathname = "/articles";
         //WHY DOESN'T THE "GET" CALL WORK HERE?!?!?!?
+
         // $.ajax("/articles", {
         //   type: "get"
         // }).then(
@@ -279,8 +153,7 @@
       });
 
     })
+  </script>
 
-    </script>
-    <!-- ============================================================ -->
   </body>
 </html>

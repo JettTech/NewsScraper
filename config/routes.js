@@ -23,6 +23,7 @@ module.exports = function(router) {
 	//FETCH ROUTE >> Fetches Article:
 	router.get("/api/articles/fetch", function(request, response) { //GETS/FETCHES the new articles from the Scraper Function AND ADDS them to our DB
 		//new promise (requesting scrape info)
+		// new Promise( /* executor */ function(resolve, reject) { ... } );
 		//with the resolve of the promise, do this
 
 
@@ -39,11 +40,11 @@ module.exports = function(router) {
             });
 
             // !!!NOW POSTING THE SCRAPED DATA TO THE DATABASE!!!!!! 
-            try {
-                models.collection.insertMany(articleLog);
-            } catch (error) {
-                console.log("Error is "+ error);
-            }
+            // try {
+            //     models.collection.insertMany(articleLog);
+            // } catch (error) {
+            //     console.log("Error is "+ error);
+            // }
 
 
             // models.collection.insertMany(articleLog, { ordered: false }, function(error, docs) {

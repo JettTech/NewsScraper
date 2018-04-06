@@ -1,84 +1,67 @@
-//Controller:Note - relays information/connects logic between the DB/Models and the views/frontend-JS 
-//=================================================================================================
+//================================================================================================================
+//Controller: Purpose Note - relays information/connects logic between the DB/Models and the views/frontend-JS 
+//================================================================================================================
 
-
-//Internal Imports/Requires:
+//Local Files:
 //=================================================
-// Importing the Models (both the Article and Notes - as Notes is merged into Artilce)
-var models = require("../models/Note.js"); //the MODLE OBJECT!!
-var articleModel = require("../models/Note.js");
+// Importing the Model files (both the Article and Notes - as Notes is merged into Artilce)
+var db = require("../models");
+
 // importing the Script files:
 var makeDate = require("../scripts/date"); //current date function >> to use when no date returend from scrate.date ... 
 
 
-//  (Notes) Controller Logic:
+// Notes Controller Logic:
 //=================================================
 module.exports = {
-	get: function(query, callback){ //finds all notes with the article-id provided in the URL id, OR ALL, by default, ALL the notes...
-		models.find(
-			{article_ID: query._id},
-			callback
-		);
+	//get/find a single note by id
+	findOne: function(req, res){ //finds one note with the note-id provided in the URL
+		db.Note
+			.findOne({_id: req.params._id})
+			.then(function(dbNote) {
+				res.json(dbNote);
+			});
 	},
 
-	getOne: function(query, callback){ //finds all notes with the note-id provided in the URL id, OR ALL, by default, ALL the notes...
-		models.find(
-			{_id: query._id}, //will "this" reference the Notes model here??
-			callback
-		);
-	},
-
-	post: function(query, callback) { //posts (saves) NEW note to the database
-		//Query here will be ==== all the information taken from the NOTE CREATION on the public director >> index.js file.
+	//post/create a note in db
+	create: function(req, res) { //posts (creates) a NEW note within the database
 		var newNote = {
-			author: query.author, //these "query"-VARs are created and passed through from the Public Directory's Article.js Script
-			title: query.title,
-			body: query.body,
+			author: req.body.author, //these "req.body"-VARs are created and passed through from the Public Directory's Article.js Script
+			title: req.body.title,
+			body: req.body.body,
 			date: makeDate(),
-			article_ID: query._id
+			article_ID: req.body._id
 		};
 
-		Note.create(newNote)
-			.then(function(noteData) {
-				articleModel.findOneAndUpdate(
-					{_id: query._id},
-					{note: note._id}, // !! is this the correct way to display the way that the Note's ID will look? !!
-					{new: true}
-				);
-
-				console.log(noteDate);
-				callback(noteData)// Pass through the noteData into the callback function to use it on separate docs and to use with other functions asynchronously.
+		db.Note
+			.create(newNote)
+			.then(function(dbNote) {
+				res.json(dbNote);
 			})
 			.catch(function(error){
 				throw error;
-			})
+			});
 	},
 
-	update: function(query, callback) { //"save/unsave" note, "update author", "update TITLE", "update Note text",.... but don't delete note/article from article database
+	//update a note by ID
+	update: function(req, res) { //"save/unsave" note, "update author", "update TITLE", "update Note text",.... but don't delete note/article from article database
         //the "query" here is the "req.params.id", which was sent over from the ROUTER.JS file.  Because the query is "req.body" AND NOT "req.params.id", the IDs for the NOTE to update still needs to be determined...
-        models.update(
-            { _id: query._id },
-            { $set: query }, //set the updated FIELD DATA to be equal to any new DATA/VALUES we pass in on QUERY
-            null,
-            callbackFunc
-        );
+        db.Note
+	        .findOneAndUpdate(
+	            { _id: req.params._id },
+	            { $set: req.body }, //set the updated FIELD DATA to be equal to any new DATA/VALUES we pass in on QUERY
+	            {new: true})
+	        .then(function(dbNote) {
+	        	res.json(dbNote);
+	        })
 	},
 
-	delete: function(query, callback) {
-		models.remove(
-			{_id: query._id},
-			callback
-		);
+	//delete the note by ID
+	delete: function(req, res) {
+		db.Note
+			.remove({_id: req.params._id})
+			.then(function(dbNote) {
+				res.json(dbNote);
+			});
 	}
 };
-
-
-//if wished to create route that would only show notes for specfiic article:
-                // if (articleLog._id === null || articleLog._id === "" || articleLog._id === undefined) {
-                //    story.note_ID = "",
-                //    console.log("Sorry there are no Notes at this time - no NOTE ID can be found: " + data._id);
-                // } 
-                // else {
-                //     story.note_ID = articleLog._id, //VERIFY this is sendind the correct id! >> aligns with Note ID!//
-                //     console.log("we added a the Note ID to this story (article): " + story.note_ID);
-                // };

@@ -4,6 +4,10 @@
         border-fit: stretch;
         /*... :border-box*/
       }
+
+      nav {
+        background-color: #df2e16;
+      }
       
       #wrapper {
         width: 1000px;

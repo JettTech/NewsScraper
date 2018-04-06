@@ -1,5 +1,6 @@
-<!--   Page  Header -->
-    <!--  ==============================================================================================================    --> 
+<!-- ================================================== -->
+<!-- Page Header Starts -->
+<!-- ================================================== -->
 <!--       <div class="row container" style="margin-top: 50px">
         <div class="col 10s center-align">
           <h2>The Daily News Scraper: Bookmarks</h2>
@@ -8,15 +9,19 @@
            <h5 class="grey-text text-darken-3 lighten-3">Many of the articles below have comments.  Please feel free ot browse and add your own thoughts to the feed!</h5>
         </div>     
       </div> -->
-
-
-<!-- Page Content/Scraped-News Cards -->
-    <!--  ==============================================================================================================    -->
+<!-- ================================================== -->
+<!-- Page Header Ends -->
+<!-- ================================================== -->
 
 <!--       <div class="parallax-container">
         <div class="parallax"><img src="/images/coffeeImg.jpg" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
       </div> -->
   
+
+<!-- ================================================== -->
+<!-- SAVED Article Display (Scraped News) Starts -->
+<!-- ================================================== -->
+
       <!-- ////////////// START THE "Section White" SECTION Here - TEXT PORTION OF PAGE BODY ////////////// -->
       <div class="section white">
         <div class="row container">         
@@ -84,14 +89,18 @@
         </div>
       </div>
       <!-- ////////////// "Section White" ENDS HERE!! ////////////// -->
+<!-- ================================================== -->
+<!-- SAVED Article Display (Scraped News) Ends -->
+<!-- ================================================== -->
 
 <!--       <div class="parallax-container">
         <div class="parallax"><img src="/images/coffeepaperImg.jpg" style="display: block;"></div> //how can wee access this image fro ome the vies page
       </div> -->
 
 
-  <!--editNoteModal: Modal Structure -->
-      <!--  ==================================================================- -->
+<!-- ================================================== -->
+<!-- Modal Display Starts -->
+<!-- ================================================== -->
           <div id="editNoteModal" class="modal">
             <div class="modal-content">
               {{#with (Article_id) as |Article|}} <!-- /locate the article's id... find a way to automaote -->
@@ -147,6 +156,9 @@
               <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
           </div>
-       
+<!-- ================================================== -->
+<!-- Modal Display Ends -->
+<!-- ================================================== -->
+
         </div>
       </div>
