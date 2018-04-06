@@ -4,7 +4,7 @@ var router = require("express").Router();
 
 //Local File References:
 //===============================================
-var noteController = require("../../controllers/notes");
+var noteController = require("../../controller/notes");
 
 
 //Note Routes:

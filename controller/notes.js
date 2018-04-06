@@ -8,7 +8,7 @@
 var db = require("../models");
 
 // importing the Script files:
-var makeDate = require("../scripts/date"); //current date function >> to use when no date returend from scrate.date ... 
+var makeDate = require("../scripts/generateDate"); //current date function >> to use when no date returend from scrate.date ... 
 
 
 // Notes Controller Logic:

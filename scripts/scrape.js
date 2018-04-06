@@ -6,7 +6,7 @@ var cheerio = require("cheerio"); //Scraping-Tool Dependency
 
 //Local Files:
 //=================================================
-var makeDate = require("./date.generateDate"); //current date function >> to use when no date returend from scrate.date ... 
+var makeDate = require("./generateDate"); //current date function >> to use when no date returend from scrate.date ... 
 
 
 //Scrape Logic:

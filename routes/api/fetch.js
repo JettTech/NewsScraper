@@ -4,7 +4,7 @@ var router = require("express").Router();
 
 //Local File References:
 //===============================================
-var fetchController = require("../../controllers/fetch");
+var fetchController = require("../../controller/fetch");
 
 //Fetch Routes:
 //===============================================

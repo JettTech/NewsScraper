@@ -4,7 +4,7 @@ var router = require("express").Router();
 
 //Local File References:
 //===============================================
-var articleController = require("../../controllers/articles");
+var articleController = require("../../controller/articles");
 
 //Article Routes:
 //===============================================

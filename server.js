@@ -18,9 +18,8 @@ app.use(express.static("public"));  //serves the "PUBLIC" folder as the static f
 app.engine("handlebars", expressHandlebars({ //ESTABLISHES THE ENGINE WITHIN APP
 	defaultLayout: "main" //desingates the index file to reference as the root views file.
 }));
-app.set("view-engine", "handlebars"); //INFOMRS THE APP to USE the defined VIEW ENGINE above...
+app.set("view-engine", "handlebars"); //INFORMS THE APP to USE the defined VIEW ENGINE above...
  
-app.use(logger("dev")); // Use morgan logger for logging requests
 app.use(bodyParser.urlencoded({extended: false})); // code determins how to handle form
  //submissions, the option "false" denies access to extended objects (objects whose keys have values that are 
   // addt'l objs..), and will instead return them as undefined.
@@ -47,6 +46,3 @@ mongoose.connect(MONGODB_URI, function(error){ // !! WHY is node calling this st
 app.listen(PORT, function() {
 	console.log("We're listening on PORT: " + PORT);
 });
-
-
-//https://www.theonion.com/
