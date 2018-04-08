@@ -4,7 +4,7 @@
 
 //Local Files:
 //=================================================
-var db = require("../models"); //the MODLE OBJECT!!
+var db = require("../models");
 
 
 // Articles Controller Logic:
@@ -13,13 +13,11 @@ module.exports = {
     findAll: function(req, res) { //GET >> should RETRIEVE ALL the data from the database/models (and therefore needs to accwss the models directory/ article model in the Article.js file)!!
         db.Article
             .find(req.query)
-            .sort({
-                    date: -1 //This will SORT starting from most recent (sorted by date) >>ref Mongoose documentation.
-            })
+             //The .sort mongoose method will SORT starting from most recent (sorted by date) >>ref Mongoose documentation.
+            .sort({date: -1})
             // .populate("note_ID") //populate all of the notes associated with it;
             .then(function(dbArticle) {
                 res.json(dbArticle);
-                // res.status(200).end();
             });
     },
 
@@ -31,7 +29,6 @@ module.exports = {
                 { new: true })
             .then(function(dbArticle) {
                 res.json(dbArticle);
-                // res.status(200).end();
             });
     },
 
@@ -40,7 +37,6 @@ module.exports = {
             .remove({ _id: req.params._id })
             .then(function(dbArticle){
                 res.json(dbArticle);
-                // res.status(200).end();
             });
     }
 };

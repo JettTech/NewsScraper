@@ -3,26 +3,16 @@ var Schema = mongoose.Schema;
 
 var NoteSchema = new Schema ({
 	// article_ID is the article associate with the note
-	article_ID: {
+	_article_Id: {
 		type: Schema.Types.ObjectId,
 		ref: "Article"
-	},
-
-	author: {
-		type: String,
-		required: true
-	},
-
-	title: {
-		type: String,
-		required: true
 	},
 
 	body: String,
 
 	date: {
-		type: String,
-		required: true
+		type: Date,
+		default: Date.now
 	}
 });
 var Note = mongoose.model("Note", NoteSchema);

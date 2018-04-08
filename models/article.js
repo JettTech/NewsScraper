@@ -6,23 +6,23 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema ({
 		title: {
 			type: String,
-			unique: false,
-			require: true
+			unique: {index:{ unique: true }},
+			required: true
 		},
 
 		link: {
 			type: String,
-			required: false
+			required: true
 		},
 
 		img: {
 			type: String,
-			required: false
+			required: true
 		},
 
 		description: {
 			type: String,
-			required: false
+			required: true
 		},
 		
   		saved: {
@@ -30,10 +30,9 @@ var ArticleSchema = new Schema ({
 			default: false
 		},
 		
-		// date is a string
 		date: {
 			type: Date,
-			required: false
+			default: Date.now
 		}
 });
 var Article = mongoose.model("Article", ArticleSchema);

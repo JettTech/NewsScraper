@@ -3,11 +3,8 @@
 var express = require("express");
 var app = express();
 var mongoose = require("mongoose");
-var bodyParser = require("body-parser");
 var expressHandlebars = require("express-handlebars");
-
-var logger = require("morgan");
-var cheerio = require("cheerio"); //Scraping-Tool Dependency
+var bodyParser = require("body-parser");
 
 var routes = require("./routes")
 
@@ -34,11 +31,7 @@ var PORT = process.env.PORT | 4500;
 mongoose.Promise = Promise;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
-mongoose.connect(MONGODB_URI, function(error){
-	if (error) throw error;
-	useMongoClient: true;
-	console.log("Mongoose connection is successful!!")
-});
+mongoose.connect( MONGODB_URI, {useMongoClient: true} );
 
 
 // Start the Server // Initialize Server Listiner with PORT Connection..

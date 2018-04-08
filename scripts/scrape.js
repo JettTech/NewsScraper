@@ -14,7 +14,6 @@ var makeDate = require("./generateDate"); //current date function >> to use when
  var scrape = function() {
  	
  	//1.) Accss Website of choice:
- 	// try below scrape with THIS URL:"https://www.bizjournals.com/austin/" with className: "h3.item__title"
  	return axios.get("http://www.bbc.com/news/world")
  	
  	//2.) preform Scrape...
