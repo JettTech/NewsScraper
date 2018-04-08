@@ -26,7 +26,7 @@
 <!-- ================================================== -->
 
       <!-- ////////////// START THE "Section White" SECTION Here - TEXT PORTION OF PAGE BODY ////////////// -->
-      <div class="section white">
+      <div id="article-container" class="white container-fluid"> <!-- class='section' -->
         <div class="row container">         
           <div class="col s12">
              <h3 class="header center-align"><strong>Articles</strong></h3>
@@ -34,8 +34,8 @@
              <br/>
           </div>
           
-          <!-- ////////////// Card BODY STARTS HERE!! //////////////-->
-          {{#each Article_data}} <!-- !! make sure this is the correct object name to call !! -->
+          <!-- ////////////// Card Section STARTS HERE!! //////////////-->
+          {{#each article_data}} <!-- !! make sure this is the correct object name to call !! -->
 
             <div class="col s10 offset-s1">
               <div class="card">
@@ -44,7 +44,7 @@
                 </div>
                 <!-- Card AbbrvContent!! -->
                 <div class="card-content">
-                  <span id="articleTitle" class="card-title activator grey-text text-darken-4">{{this.title}} - Card Title<i class="material-icons right">more_vert</i></span>
+                  <span id="articleTitle" class="card-title activator grey-text text-darken-4">{{this.title}} CARD TITLE<i class="material-icons right">more_vert</i></span>
                   <!-- <p>{{this.descriptionShort}} - Short Desription </p> -->
                   <p><a href="{{this.link}}" - Link to the article source.</a></p>
                 </div>
@@ -52,8 +52,8 @@
 
                 <!-- Main Card Content (Card Reveal Content)!! -->
                 <div class="card-reveal">
-                  <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h5><strong> {{this.title}} - Card Title</strong></h5><i class="material-icons right close">close</i></span>
-                  <h6 id="articleDescription"> {{this.descriptionFull}} - Article Description.</h6>
+                  <span id="ExpandArtTitle" class="card-title grey-text text-darken-4"><h5><strong> {{this.title}} : Card Title</strong></h5><i class="material-icons right close">close</i></span>
+                  <h6 id="articleDescription"> {{this.description}} : Article Description.</h6>
                   <br/>
                   <hr/>
                   <h5><strong>Comments:</strong></h5>
@@ -83,7 +83,7 @@
 
           {{/each}} 
 
-          <!-- /////// Card BODY ENDS HERE!! /////// -->
+          <!-- /////// Card Section ENDS HERE!! /////// -->
         </div>
       </div>
       <!-- ////////////// "Section White" ENDS HERE!! ////////////// -->

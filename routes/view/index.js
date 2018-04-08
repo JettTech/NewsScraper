@@ -11,12 +11,12 @@ router.get("/", function(request, response){
 
 // This route renders the handlebars homepage
 router.get("/articles", function(request, response){
-	response.render("homePage.handlebars");
+	response.render("homePage.handlebars", { article_data: response });
 });
 
 // This route renders the saved articles handledbars page
 router.get("/saved", function(request, response){ //get ALL SAVED articles
-	response.render("articleSaved.handlebars");
+	response.render("articleSaved.handlebars", { saved_data: response });
 });
 
 module.exports = router;

@@ -19,13 +19,13 @@
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a class="homeBtn" >Home Sweet Home</a></li> <!-- action="/articles" method="get" -->
-            <li><a class="savedBtn">Article Archive</a></li> 
-            <li><a class="scrapeModal">Scrape More Articles</a></li> <!-- href="scrapeModal" -->
+            <li><a class="savedArticles" href="/saved">Article Archive</a></li> 
+            <li><a class="scrapeArticles">Scrape More Articles</a></li>
           </ul>
           <ul class="side-nav right-align" id="mobile-demo" style="transform: translateX(-100%);">
             <li><a class="homeBtn">Home Sweet Home</a></li>
-            <li><a class="savedBtn">Article Archive</a></li>
-            <li><a class="scrapeModal">Scrape More Articles</a></li>
+            <li><a class="savedArticles" href="/saved">Article Archive</a></li>
+            <li><a class="scrapeArticles">Scrape More Articles</a></li>
           </ul>
         </div>
         <div class="nav-wrapper">
@@ -61,7 +61,7 @@
 <!-- ================================================== -->
 <!-- Article Display Starts -->
 <!-- ================================================== -->
-      <div>
+      <div class="jumbotron">
 
         {{{body}}}
         
@@ -79,7 +79,7 @@
 <!-- ================================================== -->
 <!-- Modal Structure Starts -->
 <!-- ================================================== -->
-    <div id="scrapeModal" class="modal">
+<!--     <div id="scrapeModal" class="modal">
       <div class="modal-content">
         <h4>Thanks for Scraping!!</h4>
         <p class="scrapeCount">Modal Text...</p>
@@ -87,7 +87,7 @@
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
       </div>
-    </div>
+    </div> -->
 <!-- ================================================== -->
 <!-- Modal Structure Ends -->
 <!-- ================================================== -->
@@ -107,6 +107,8 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
   <!-- Local JS Files -->
   <script src="/js/index.js"></script>
@@ -116,41 +118,6 @@
     $(document).ready(function(event){
       $(".parallax").parallax();
       $(".button-collapse").sideNav();
-
-      //$(".close").close();
-
-      $(".scrapeModal").on("click", function() {  
-          $.get("/api/articles/fetch") //this should return the JSON message created with the articleCount number >>> created in the routes.js file.
-            .then(function(jsonResponse) {
-              $("#scrapeModal").modal("open"); //this ref OR the reference to the modal above SHOULD work... BUT neither do.. resarech.. 
-              $(".scrapeCount").html(jsonResponse.message); //to display the json message (inside the modal.)   
-
-              console.log("load was preformed.  jsonResponse.message = ");
-              console.log(jsonResponse.message); 
-          });      
-      });
-      
-
-      $(".homeBtn").on("click", function() {
-        window.location.pathname = "/articles";
-        //WHY DOESN'T THE "GET" CALL WORK HERE?!?!?!?
-
-        // $.ajax("/articles", {
-        //   type: "get"
-        // }).then(
-        // function(){
-        //   console.log("Going to 'articles' - the main.handlebars page/Homepage..");
-        // }).catch(
-        // function(error){
-        //   if(error) throw error;
-        // });
-      });
-
-      $(".savedBtn").on("click", function() {
-        //WHY DOESN'T THE "GET" CALL WORK HERE?!?!?!?
-        window.location.pathname = "/articles/saved";
-      });
-
     })
   </script>
 

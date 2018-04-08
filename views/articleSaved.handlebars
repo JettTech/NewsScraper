@@ -16,7 +16,7 @@
 <!--       <div class="parallax-container">
         <div class="parallax"><img src="/images/coffeeImg.jpg" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
       </div> -->
-  
+
 
 <!-- ================================================== -->
 <!-- SAVED Article Display (Scraped News) Starts -->
@@ -32,8 +32,8 @@
           </div>
           
           <!-- ////////////// Card BODY STARTS HERE!! //////////////-->
-          {{#if Article_data}}
-            {{#each Article_data}} <!-- !! make sure this is the correct object name to call !! -->
+          {{#if saved_data}}
+            {{#each saved_data}}
 
               <div class="col s10 offset-s1">
                 <div class="card">
@@ -103,7 +103,7 @@
 <!-- ================================================== -->
           <div id="editNoteModal" class="modal">
             <div class="modal-content">
-              {{#with (Article_id) as |Article|}} <!-- /locate the article's id... find a way to automaote -->
+              {{#with (article_id) as |article|}} <!-- /locate the article's id... find a way to automaote -->
 
 
                 <h3> {{this.title}} - Article Notes!</h3>
@@ -128,8 +128,9 @@
                         <div class="row">
                           <div class="input-field col s6">
                             <i class="material-icons prefix">mode_edit</i>
-                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                             <label id="newNote" for="icon_prefix2">Your Note</label>
+                            <textarea id="newArticleNote" class="materialize-textarea"></textarea><!--  id="icon_prefix2" -->
+                            <a id="submitNote" class="btn btn-large" type="submit"></a>
                           </div>
                         </div>
                       </form>

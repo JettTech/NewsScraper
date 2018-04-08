@@ -19,6 +19,7 @@ module.exports = {
             // .populate("note_ID") //populate all of the notes associated with it;
             .then(function(dbArticle) {
                 res.json(dbArticle);
+                // res.status(200).end();
             });
     },
 
@@ -30,6 +31,7 @@ module.exports = {
                 { new: true })
             .then(function(dbArticle) {
                 res.json(dbArticle);
+                // res.status(200).end();
             });
     },
 
@@ -38,6 +40,7 @@ module.exports = {
             .remove({ _id: req.params._id })
             .then(function(dbArticle){
                 res.json(dbArticle);
+                // res.status(200).end();
             });
     }
 };

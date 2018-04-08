@@ -34,7 +34,7 @@ var PORT = process.env.PORT | 4500;
 mongoose.Promise = Promise;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
-mongoose.connect(MONGODB_URI, function(error){ // !! WHY is node calling this structure a "deprecated version," if I am using the RECOMENDED "useMongoClient," when calling ".connect"
+mongoose.connect(MONGODB_URI, function(error){
 	if (error) throw error;
 	useMongoClient: true;
 	console.log("Mongoose connection is successful!!")
