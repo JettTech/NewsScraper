@@ -4,10 +4,15 @@
       <a class="navbar-brand" href="/">The Daily Scraper</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/articles">Your Scraper Home</a></li>
+      <li class="active"><a href="/articles">Today's Scrapes</a></li>
       <li><a href="/saved">Saved Scrapes</a></li>
-      <li><a class="btn btn-danger scrape-new">Scrape More!</a></li>
+      <li><a class="btn btn-danger scrape-new">Scrape more Charts!</a></li>
     </ul>
+    <div>
+      <a id="annoucement" class="waves-effect waves-light btn btn-large btn-floating right" onclick="$('.tap-target').tapTarget('open')" >
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
   </div>
 </nav>
 <div class="jumbotron text-center">
@@ -16,18 +21,49 @@
   <div class="background-image">
   </div>
   <div class="caption">
-    <h1>The Daily Scraper</h1>
-    <p>The BBC World News Edition</p>
+    <h1>Welcome to 
+      <br/>
+      The Daily Scraper
+    </h1>
+    <h3>The Austin Business Journal Edition</h3>
+    <p>Best Business Lists</p>
   </div>
 </div>
-<div class="container-fluid article-container">
+
+<div class="row container" style="margin-top: 50px">
+<!--   <div class="col 10s center-align">
+    <h2>Welcome to The Daily Scraper!</h2>
+    <h4 class="grey-text text-darken-3 lighten-3">We've scraped the Top Ranking Austin Business Lists to compile the top buzz of your local biz, your competition, and your community.</h4>
+    <hr>
+     <h5 class="grey-text text-darken-3 lighten-3">So go ahead, grab some coffee and browse the articles below. Don't forget to comment should something spark your interest!</h5>
+  </div>     
+</div> -->
+
+<div class="parallax-container">
+  <div class="parallax"><img src="/public/images/coffeepaperImg.jpg" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
+</div>
+
+<div class="row article-container">
+</div>
+
+<div class="parallax-container">
+  <div class="parallax"><img src="/public/images/coffeeImg.jpg" style="display: block;"></div>
 </div>
 
 <footer class="footer">
   <div class="container">
-    <p>The Daily Scraper: World News</p>
+    <p>The Daily Scraper: Austin Business Journal Edition</p>/
   </div>
 </footer>
+
+  <div class="tap-target teal lighten-3" data-activates="annoucement">
+    <div class="tap-target-content">
+      <h5>Welcome to the Daily Scraper!</h5>
+      <p class="white-text">We've scraped the Top Ranking Austin Business Lists to compile the top buzz of your local biz, your competition, and your community.  So go ahead, grab some coffee and browse the articles below.
+      </p>
+     <a href="#!" onclick="$('.tap-target').tapTarget('close')">Dismiss</a>
+    </div>
+  </div>v
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -36,12 +72,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 <!-- Local JS Files -->
-<script src="../../public/assets/js/index.js"></script>
-<!-- <script src="/js/index.js"></script> -->
+<script src="/js/index.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(event){
     $(".parallax").parallax();
     $(".button-collapse").sideNav();
+    $('.tap-target').tapTarget("open");
   })
 </script>

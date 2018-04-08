@@ -5,7 +5,7 @@ html {
 
 body {
   margin-bottom: 80px;
-  background-image: url("../images/paper.png");
+  /*background-image: url("../images/paper.png");*/
 }
 
 .footer {
@@ -43,18 +43,19 @@ body {
 
 .jumbotron .background-image {
   height: 100%;
-  background-image: url("../images/newspaper.jpg");
+  background-image: url("../images/coffeepaperImg.jpg");
   background-size: cover;
 }
 
 .jumbotron .caption {
   position: absolute;
-  top: 30%;
+  top: -4%;
   width: 100%;
   text-align: center;
 }
 
 .jumbotron .caption h1,
+.jumbotron .caption h3,
 .jumbotron .caption p {
   color: white;
 }
@@ -143,6 +144,11 @@ textarea {
   resize: none;
 }
 
+.tap-target-wrapper {
+  height: 1000 px;
+  width: 1000 px;
+}   
+
 .bootbox-body .btn {
   float: right;
   margin: 5px;
@@ -157,3 +163,7 @@ textarea {
   bottom: 10px;
 }
 
+div.tap-target-content {
+    width: 490.996px;
+    text-align: right;
+}

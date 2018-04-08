@@ -13,10 +13,10 @@ $(document).ready(function() {
   initPage();
 
   function initPage() {
-    // Empty the article container, run an AJAX request for any saved headlines
+    // Empty the article container, run an AJAX request for any saved articles
     articleContainer.empty();
-    $.get("/api/headlines?saved=true").then(function(data) {
-      // If we have headlines, render them to the page
+    $.get("/api/articles?saved=true").then(function(data) {
+      // If we have articles, render them to the page
       if (data && data.length) {
         renderArticles(data);
       }
@@ -50,8 +50,8 @@ $(document).ready(function() {
         "<div class='panel panel-default'>",
         "<div class='panel-heading'>",
         "<h3>",
-        "<a class='article-link' target='_blank' href='" + article.url + "'>",
-        article.headline,
+        "<a class='article-link' target='_blank' href='" + article.link + "'>",
+        article.title,
         "</a>",
         "<a class='btn btn-danger delete'>",
         "Delete From Saved",
@@ -60,7 +60,7 @@ $(document).ready(function() {
         "</h3>",
         "</div>",
         "<div class='panel-body'>",
-        article.summary,
+        article.img,
         "</div>",
         "</div>"
       ].join("")
@@ -128,13 +128,13 @@ $(document).ready(function() {
   }
 
   function handleArticleDelete() {
-    // This function handles deleting articles/headlines
+    // This function handles deleting articles
     // We grab the id of the article to delete from the panel element the delete button sits inside
     var articleToDelete = $(this).parents(".panel").data();
     // Using a delete method here just to be semantic since we are deleting an article/headline
     $.ajax({
       method: "DELETE",
-      url: "/api/headlines/" + articleToDelete._id
+      url: "/api/articles/" + articleToDelete._id
     }).then(function(data) {
       // If this works out, run initPage again which will rerender our list of saved articles
       if (data.ok) {

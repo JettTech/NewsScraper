@@ -15,7 +15,6 @@ module.exports = {
             .find(req.query)
              //The .sort mongoose method will SORT starting from most recent (sorted by date) >>ref Mongoose documentation.
             .sort({date: -1})
-            // .populate("note_ID") //populate all of the notes associated with it;
             .then(function(dbArticle) {
                 res.json(dbArticle);
             });

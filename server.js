@@ -37,5 +37,5 @@ mongoose.connect( MONGODB_URI, {useMongoClient: true} );
 // Start the Server // Initialize Server Listiner with PORT Connection..
 //==========================================================================
 app.listen(PORT, function() {
-	console.log("We're listening on PORT: " + PORT);
+	console.log("Hey there! You're listening on PORT: " + PORT);
 });

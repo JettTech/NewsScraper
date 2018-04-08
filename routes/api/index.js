@@ -18,18 +18,3 @@ router.use("/notes", noteRoutes);
 router.use("/articles", articleRoutes);
 
 module.exports = router;
-
-
-
-///////////////////////////////////////////////////////////////////////////
-// Importing the Scrape function from "Scripts" folder/directory:
-// var scrape = require("../scripts/scrape.js");
-
-// importing the controller files:
-// var articlesController = require("../controller/articles.js");
-// var notesController = require("../controller/notes.js");
-// var scrape = require("../scripts/scrape"); //the scraped data from the website
-///////////////////////////////////////////////////////////////////////////
-
-
-
