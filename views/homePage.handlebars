@@ -1,14 +1,14 @@
 <nav class="navbar navbar-inverse">
   <div class="nav-wrapper container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand brand-logo" href="/">The Daily Scraper</a>
+      <a class="navbar-brand brand-logo" href="/">NSD</a>
     </div>
 
     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li class="active"><a href="/articles">Today's Scrapes</a></li>
       <li><a href="/saved">Saved Scrapes</a></li>
-      <li><a class="btn btn-danger scrape-new">Scrape More</a></li>
+      <li style="margin-right: 80px"><a class="btn btn-danger scrape-new">Scrape More</a></li>
     </ul>
     <div>
       <a id="annoucement" class="waves-effect waves-light btn btn-large btn-floating right" onclick="$('.tap-target').tapTarget('open')" >
@@ -33,7 +33,7 @@
   <div class="caption">
     <h1>Welcome to 
       <br/>
-      The Daily Scraper
+      News Scraper Daily
     </h1>
     <h3>The Austin Business Journal Edition</h3>
     <p>Top Tech News</p>
@@ -45,7 +45,7 @@
 
 <footer class="footer">
   <div class="container">
-    <p id="footer" class="center-align">The Daily News Scraper | ©Copyright 2017</p>
+    <p id="footer" class="center-align">News Scraper Daily | ©Copyright 2017</p>
   </div>
 </footer>
 
@@ -75,6 +75,10 @@
     if ($(window).width() >= "760px") {
       $('.tap-target').tapTarget("open");
     }
+
+    // function flipOver() {
+    //   $(this).css("transform", "rotateY(180deg");
+    // }
 
   })
 </script>

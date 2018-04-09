@@ -1,6 +1,6 @@
 html {
-  position: relative;
-  min-height: 100%;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)
+  overflow: hidden
 }
 
 body {
@@ -13,20 +13,31 @@ body {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 50px;
   color: white;
   background-color: #2196f3;
 }
 
 .navbar {
   margin-bottom: 0;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: #e79212;
 }
 
 .navbar-brand.brand-logo {
   margin-top: 15px;
+  color: #0c7cd5;
+  font-family: "Cormorant SC";
+  font-size: 42px;
+}
+
+a.btn {
+  background-color: #0c7cd5;
 }
 
 .jumbotron {
@@ -71,6 +82,7 @@ body {
 .jumbotron h1 {
   font-size: 80px;
   font-weight: 800;
+  margin-top: 100px;
 }
 
 .jumbotron p {
@@ -79,16 +91,17 @@ body {
 
 @media only screen and (max-width: 430px) {
   .article-container {
-    margin-top: 110px;
+    margin-top: 180px;
   }
 }
 
 .card {
   border-radius: 0;
   box-shadow: 3px 3px 20px lightslategrey;
-  height: 500px;
+  height: 400px;
   margin: 20px 10px;
-  background-color: #2196f3;
+  background-color: #eeaf3e;
+  border: 5px solid slategray;
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 450px) {
@@ -99,12 +112,16 @@ body {
   }
 }
 
-.card a {
+.card h4 a {
   color: white;
 }
 
+.card h5 a {
+  color: #e3e4f3;
+}
+
 .panel.panel-default .panel-heading {
-  background-color: transparent;
+  background-color: blue;
   position: relative;
 }
 
@@ -112,10 +129,18 @@ body {
   color: white;
 }
 
-.card .btn {
+.card .btn.save {
   position: absolute;
   top: 240px;
-  right: 34%;
+  right: 32%;
+  z-index: 999999;
+}
+
+.card .btn.link {
+  background-color: orange;
+  position: absolute;
+  top: 300px;
+  right: 32%;
   z-index: 999999;
 }
 
@@ -127,15 +152,69 @@ body {
 
 @media only screen and (max-width: 800px) and (min-width: 380px) {
   .card .btn {
-    right: 26%;
+    right: 25%;
   }
 }
 
 @media only screen and (max-width: 379px) {
-  .card .btn {
-    right: 21%;
+  .card {
+    height: 500px;
+  }
+  .card .btn.save {
+    top: 340px;
+    right: 23%;
+  }
+  .card .btn.link {
+    top: 400px;
+    right: 23%;
   }
 }
+
+/* /////////// card-flip /////////// */
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000px;
+}
+  /* flip the pane when hovered */
+  .flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+  }
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  transform: rotateY(0deg); /* this is for firefox 31 */
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
+}
+
+/*.back:hover {
+    transform:scale(1.3);
+    transition-property:transform;
+    transition-duration:.3s;
+    position:relative;
+    z-index:1
+}*/
+
+/*////////////////////////*/
 
 
 .panel-heading .btn.delete {
@@ -224,7 +303,7 @@ div.tap-target-content {
 a#annoucement {
   z-index: 99px !important;
   position: absolute;
-  top: 80px;
+  top: 3px;
   right: 20px;
 }
 
@@ -232,11 +311,89 @@ row {
   margin-bottom: 0px;
 }
 
-@media only screen and (max-width: 800px) {
-  .a#annoucement {
-    z-index: 99px !important;
+@media only screen and (min-width:701px) and (max-width: 800px) {
+  a#annoucement {
+    z-index: -2px !important;
+    position: absolute;
+    top: 2px;
+    right: 50px;
+  }
+}
+
+@media only screen and (min-width:200px) and (max-width: 700px) {
+  a#annoucement {
+    z-index: -2px !important;
     position: absolute;
     top: 2px;
     right: 20px;
   }
 }
+
+/*///////////STARS///////    
+#stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: multiple-box-shadow(700);
+  animation: animateStars 50s linear infinite;
+}
+    
+  #stars::after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: multiple-box-shadow(700);
+  }    
+    
+#stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: $ multiple-box-shadow(200);
+  animation: animateStars 100s linear infinite;
+} 
+
+#stars2::after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: $ multiple-box-shadow(200);
+}
+    
+#stars3 {;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: multiple-box-shadow(100);
+  animation : animateStars 150s linear infinite;
+}
+  
+#stars3::after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: multiple-box-shadow(100);
+}
+    
+@keyframes animateStars {
+  from {transform: translateY(0px);}
+  to {transform: translateY(-2000px);}
+}
+
+@keyframes multiple-box-shadow ($n) // n represents the num of stars required
+  $value: '#{random(2000)}px #{random(2000)}px #FFF'
+  @for $i from 2 through $n
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF'
+
+  @return unquote($value)
+*/
+

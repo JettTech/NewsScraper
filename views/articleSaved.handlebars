@@ -1,14 +1,29 @@
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="nav-wrapper container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Saved Scrapes</a>
+      <a class="navbar-brand brand-logo" href="/">NSD</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/">Today's Scrapes</a></li>
-      <li class="active"><a href="/saved">Saved Scrapes</a></li>
+
+    <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li class="active"><a href="/articles">Today's Scrapes</a></li>
+      <li><a href="/saved">Saved Scrapes</a></li>
+      <li style="margin-right: 80px"><a class="btn btn-danger scrape-new">Scrape More</a></li>
     </ul>
+    <div>
+      <a id="annoucement" class="waves-effect waves-light btn btn-large btn-floating right" onclick="$('.tap-target').tapTarget('open')" >
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
   </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/articles">Today's Scrapes</a></li>
+  <li><a href="/saved">Saved Scrapes</a></li>
+  <li><a class="btn btn-danger scrape-new">Scrape More</a></li>
+</ul>
+
 <div class="jumbotron text-center">
   <div class="overlay">
   </div>
@@ -16,15 +31,16 @@
   </div>
   <div class="caption">
     <h1>Saved Scrapes</h1>
-    <p>Your Saved Austin Business Lists</p>
+    <p>Your Saved Austin Technology News</p>
   </div>
 </div>
-<div class="container-fluid article-container">
+
+<div class="row article-container">
 </div>
 
 <footer class="footer">
   <div class="container">
-    <p id="footer" class="center-align">The Daily News Scraper | ©Copyright 2017</p>
+    <p id="footer" class="center-align">News Scraper Daily | ©Copyright 2017</p>
   </div>
 </footer>
 
