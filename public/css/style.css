@@ -5,7 +5,11 @@ html {
 
 body {
   margin-bottom: 80px;
-  /*background-image: url("../images/paper.png");*/
+  /*background-color: #06d3ba;*/
+  background-image: url("../images/coffeepaperImg.jpg");
+  background-size: cover;
+  height: 100%;
+  background-repeat: no-repeat;
 }
 
 .footer {
@@ -19,6 +23,10 @@ body {
 
 .navbar {
   margin-bottom: 0;
+}
+
+.navbar-brand.brand-logo {
+  margin-top: 15px;
 }
 
 .jumbotron {
@@ -43,7 +51,7 @@ body {
 
 .jumbotron .background-image {
   height: 100%;
-  background-image: url("../images/coffeepaperImg.jpg");
+  background-image: url("../images/coffeeImg.jpg");
   background-size: cover;
 }
 
@@ -69,27 +77,68 @@ body {
   font-size: 30px;
 }
 
-.panel {
+@media only screen and (max-width: 430px) {
+  .article-container {
+    margin-top: 110px;
+  }
+}
+
+.card {
   border-radius: 0;
   box-shadow: 3px 3px 20px lightslategrey;
-}
-
-.panel.panel-default .panel-heading {
+  height: 500px;
+  margin: 20px 10px;
   background-color: #2196f3;
-  position: relative;
 }
 
-.panel.panel-default .panel-heading h3 {
+@media only screen and (max-width: 1000px) and (min-width: 450px) {
+  .card {
+    max-width: 350px;
+    margin:0 auto;
+    margin-bottom: 40px;
+  }
+}
+
+.card a {
   color: white;
 }
 
-.panel.panel-default .panel-heading .btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.panel.panel-default .panel-heading {
+  background-color: transparent;
+  position: relative;
 }
 
-.panel.panel-default .panel-heading .btn.delete {
+.panel-heading h3 {
+  color: white;
+}
+
+.card .btn {
+  position: absolute;
+  top: 240px;
+  right: 34%;
+  z-index: 999999;
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 800px) {
+  .card .btn {
+    right: 33%;
+  }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 380px) {
+  .card .btn {
+    right: 26%;
+  }
+}
+
+@media only screen and (max-width: 379px) {
+  .card .btn {
+    right: 21%;
+  }
+}
+
+
+.panel-heading .btn.delete {
   right: 160px;
 }
 
@@ -101,6 +150,10 @@ body {
   color: white;
   display: inline-block;
   width: 80%;
+}
+  
+.card .card-content {
+  padding-top: 5px;
 }
 
 .footer > .container > p {
@@ -164,6 +217,26 @@ textarea {
 }
 
 div.tap-target-content {
-    width: 490.996px;
-    text-align: right;
+  width: 490.996px;
+  text-align: right;
+}
+
+a#annoucement {
+  z-index: 99px !important;
+  position: absolute;
+  top: 80px;
+  right: 20px;
+}
+
+row {
+  margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 800px) {
+  .a#annoucement {
+    z-index: 99px !important;
+    position: absolute;
+    top: 2px;
+    right: 20px;
+  }
 }

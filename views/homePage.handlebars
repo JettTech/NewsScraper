@@ -1,12 +1,14 @@
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="nav-wrapper container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">The Daily Scraper</a>
+      <a class="navbar-brand brand-logo" href="/">The Daily Scraper</a>
     </div>
-    <ul class="nav navbar-nav">
+
+    <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
       <li class="active"><a href="/articles">Today's Scrapes</a></li>
       <li><a href="/saved">Saved Scrapes</a></li>
-      <li><a class="btn btn-danger scrape-new">Scrape more Charts!</a></li>
+      <li><a class="btn btn-danger scrape-new">Scrape More</a></li>
     </ul>
     <div>
       <a id="annoucement" class="waves-effect waves-light btn btn-large btn-floating right" onclick="$('.tap-target').tapTarget('open')" >
@@ -15,6 +17,14 @@
     </div>
   </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/articles">Today's Scrapes</a></li>
+  <li><a href="/saved">Saved Scrapes</a></li>
+  <li><a class="btn btn-danger scrape-new">Scrape More</a></li>
+</ul>
+
+
 <div class="jumbotron text-center">
   <div class="overlay">
   </div>
@@ -26,33 +36,16 @@
       The Daily Scraper
     </h1>
     <h3>The Austin Business Journal Edition</h3>
-    <p>Best Business Lists</p>
+    <p>Top Tech News</p>
   </div>
-</div>
-
-<div class="row container" style="margin-top: 50px">
-<!--   <div class="col 10s center-align">
-    <h2>Welcome to The Daily Scraper!</h2>
-    <h4 class="grey-text text-darken-3 lighten-3">We've scraped the Top Ranking Austin Business Lists to compile the top buzz of your local biz, your competition, and your community.</h4>
-    <hr>
-     <h5 class="grey-text text-darken-3 lighten-3">So go ahead, grab some coffee and browse the articles below. Don't forget to comment should something spark your interest!</h5>
-  </div>     
-</div> -->
-
-<div class="parallax-container">
-  <div class="parallax"><img src="/public/images/coffeepaperImg.jpg" style="display: block; transform: translate3d(-50%, 0px, 0px);"></div>
 </div>
 
 <div class="row article-container">
 </div>
 
-<div class="parallax-container">
-  <div class="parallax"><img src="/public/images/coffeeImg.jpg" style="display: block;"></div>
-</div>
-
 <footer class="footer">
   <div class="container">
-    <p>The Daily Scraper: Austin Business Journal Edition</p>/
+    <p id="footer" class="center-align">The Daily News Scraper | ©Copyright 2017</p>
   </div>
 </footer>
 
@@ -77,7 +70,11 @@
 <script type="text/javascript">
   $(document).ready(function(event){
     $(".parallax").parallax();
-    $(".button-collapse").sideNav();
-    $('.tap-target').tapTarget("open");
+    $(".sidenav").sideNav();
+
+    if ($(window).width() >= "760px") {
+      $('.tap-target').tapTarget("open");
+    }
+
   })
 </script>
