@@ -1,29 +1,30 @@
 <nav class="navbar navbar-inverse">
   <div class="nav-wrapper container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand brand-logo" href="/">NSD</a>
-    </div>
-
-    <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a class="navbar-brand brand-logo" href="#!">NSD</a>
     <ul class="right hide-on-med-and-down">
       <li class="active"><a href="/articles">Today's Scrapes</a></li>
       <li><a href="/saved">Saved Scrapes</a></li>
       <li style="margin-right: 80px"><a class="btn btn-danger scrape-new">Scrape More</a></li>
     </ul>
     <div>
-      <a id="annoucement" class="waves-effect waves-light btn btn-large btn-floating right" onclick="$('.tap-target').tapTarget('open')" >
+      <a id="annoucement" class="waves-effect waves-light btn btn-large btn-floating right hide-on-med-and-down" onclick="$('.tap-target').tapTarget('open')" >
         <i class="material-icons">menu</i>
       </a>
     </div>
-  </div>
+
+    <div id="mobile-menu" class="fixed-action-btn click-to-toggle hide-on-large-only">
+      <a class="btn-floating btn-large orange">
+        <i class="large material-icons">info</i>
+      </a>
+      <ul>
+        <li><a href="/articles" class="btn-floating green darken-1 mobile-item"><i class="material-icons">home</i></a></li>
+        <li><a href="/saved" class="btn-floating blue darken-2 mobile-item"><i class="material-icons">save</i></a></li>
+        <li><a class="btn-floating red darken-3 scrape-new mobile-item"><i class="material-icons">search</i></a></li>
+      </ul>
+    </div>
+
+   </div>
 </nav>
-
-<ul class="sidenav" id="mobile-demo">
-  <li><a href="/articles">Today's Scrapes</a></li>
-  <li><a href="/saved">Saved Scrapes</a></li>
-  <li><a class="btn btn-danger scrape-new">Scrape More</a></li>
-</ul>
-
 
 <div class="jumbotron text-center">
   <div class="overlay">
@@ -56,7 +57,7 @@
       </p>
      <a href="#!" onclick="$('.tap-target').tapTarget('close')">Dismiss</a>
     </div>
-  </div>v
+  </div>
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -71,14 +72,17 @@
   $(document).ready(function(event){
     $(".parallax").parallax();
     $(".sidenav").sideNav();
+    // $('.fixed-action-btn').floatingActionButton();
+
+    var elem = document.querySelector('.fixed-action-btn');
+    var instance = M.FloatingActionButton.init(elem, {
+      direction: 'down',
+      hoverEnabled: false
+    });
 
     if ($(window).width() >= "760px") {
       $('.tap-target').tapTarget("open");
     }
-
-    // function flipOver() {
-    //   $(this).css("transform", "rotateY(180deg");
-    // }
 
   })
 </script>

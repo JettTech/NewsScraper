@@ -29,7 +29,7 @@ body {
   background-color: #23629c;
 }
 
-.navbar-brand.brand-logo {
+.navbar-brand {
   margin-top: 15px;
   color: white;
   font-family: "Cormorant SC";
@@ -241,17 +241,7 @@ a.btn {
   transform: rotateY(180deg);
 }
 
-/*.back:hover {
-    transform:scale(1.3);
-    transition-property:transform;
-    transition-duration:.3s;
-    position:relative;
-    z-index:1
-}*/
-
 /*////////////////////////*/
-
-
 .panel-heading .btn.delete {
   right: 160px;
   margin-right: 5px;
@@ -291,12 +281,44 @@ a.btn {
   color: white;
 }
 
+#mobile-menu {
+  position: fixed;
+  bottom: 39px;
+  right: 4px;
+}
+
+/*.fixed-action-btn > .btn-floating > .material-icons {
+  transition: transform 0.3s;
+}
+
+.fixed-action-btn.active > .btn-floating > .material-icons {
+  transform: rotate(135deg);
+}*/
+
+a.btn-floating:hover {
+  transform:scale(1.3);
+  transition-property:transform;
+  transition-duration:.3s;
+  position:relative;
+  z-index:1
+}
+
 .navbar-nav > li > a.scrape-new:hover {
-  background: #4caf50;
+  background-color: #4caf50;
 }
 
 .navbar-nav > li > a.scrape-new:active {
-  background: #e51c23;
+  background-color: #e51c23;
+}
+
+nav ul a:hover {
+  color: #26a69a;
+  background-color: white;
+  transform:scale(1.1);
+  transition-property:transform;
+  transition-duration:.3s;
+  position:relative;
+  z-index:1
 }
 
 .scrape-new {
