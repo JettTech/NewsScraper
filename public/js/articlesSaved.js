@@ -47,28 +47,37 @@ $(document).ready(function() {
     // article panel
     var panel = $(
       [
-        "<div class='panel panel-default'>",
-        "<div class='panel-heading'>",
-        "<h3>",
+        "<div class='col-sm-12 col-md-6 col-lg-4 flip-container'>",
+        "<div class='card flipper'>",
+        "<div class='card-image front waves-effect waves-block waves-light'>",
+        "<img id='data-" + article.img + "' src= '" + article.img + "' height='300px' style='z-index:2px;'>",
+        "<h4 class='text-center' style='color:white'>",
+        "<i class='material-icons' style='font-size:3rem'>",
+        "info_outline",
+        "</i>",
+        "</h4>",
+        "</div>",
+        "<div class='card-content'>",
+        "<div class='panel-heading text-center back'>",
+        "<h4>",
         "<a class='article-link' target='_blank' href='" + article.link + "'>",
         article.title,
         "</a>",
-        "<a class='btn btn-danger delete'>",
+        "</h4>",
+        "<br/>",
+        "<a  target='_blank' href='" + article.link + "' class='btn btn-large btn-success link'>",
+        "Visit Article",
+        "</a>",
+        "<a class='btn btn-danger delete' id='"+ article._id +"'>",
         "Delete From Saved",
         "</a>",
-        "<a class='btn btn-info notes'>Article Notes</a>",
-        "</h3>",
+        "<a class='btn btn-info notes' id='N"+ article._id +"'>Article Notes</a>",
         "</div>",
-        "<div class='panel-body'>",
-        article.img,
         "</div>",
         "</div>"
       ].join("")
     );
-    // We attach the article's id to the jQuery element
-    // We will use this when trying to figure out which article the user wants to remove or open notes for
-    panel.data("_id", article._id);
-    // We return the constructed panel jQuery element
+	 // panel.data("_id", article._id);
     return panel;
   }
 
@@ -78,7 +87,7 @@ $(document).ready(function() {
     var emptyAlert = $(
       [
         "<div class='alert alert-warning text-center'>",
-        "<h4>Uh Oh. Looks like we don't have any saved articles.</h4>",
+        "<h4>You currently don't have any saved articles! Be sure to click the 'Save Article' button whenever you fancy an article.</h4>",
         "</div>",
         "<div class='panel panel-default'>",
         "<div class='panel-heading text-center'>",
@@ -95,86 +104,111 @@ $(document).ready(function() {
   }
 
   function renderNotesList(data) {
-    // This function handles rendering note list items to our notes modal
+    // This function handles rendering note list items to our notes bootBox
     // Setting up an array of notes to render after finished
     // Also setting up a currentNote variable to temporarily store each note
     var notesToRender = [];
     var currentNote;
-    if (!data.notes.length) {
+    if (!data.noteText.length) {
       // If we have no notes, just display a message explaing this
       currentNote = ["<li class='list-group-item'>", "No notes for this article yet.", "</li>"].join("");
       notesToRender.push(currentNote);
     }
     else {
       // If we do have notes, go through each one
-      for (var i = 0; i < data.notes.length; i++) {
+      for (var i = 0; i < data.length; i++) {
         // Constructs an li element to contain our noteText and a delete button
         currentNote = $(
           [
             "<li class='list-group-item note'>",
-            data.notes[i].noteText,
+            data[i].noteText,
             "<button class='btn btn-danger note-delete'>x</button>",
             "</li>"
           ].join("")
         );
         // Store the note id on the delete button for easy access when trying to delete
-        currentNote.children("button").data("_id", data.notes[i]._id);
+        currentNote.children("button").data("_id", data[i]._id);
         // Adding our currentNote to the notesToRender array
         notesToRender.push(currentNote);
       }
     }
-    // Now append the notesToRender to the note-container inside the note modal
+    // Now append the notesToRender to the note-container inside the note bootBox
     $(".note-container").append(notesToRender);
   }
 
   function handleArticleDelete() {
-    // This function handles deleting articles
-    // We grab the id of the article to delete from the panel element the delete button sits inside
-    var articleToDelete = $(this).parents(".panel").data();
+  	var articleToDeleteID = $(this).attr("id");
     // Using a delete method here just to be semantic since we are deleting an article/headline
     $.ajax({
       method: "DELETE",
-      url: "/api/articles/" + articleToDelete._id
+      url: "/api/articles/" + articleToDeleteID
     }).then(function(data) {
       // If this works out, run initPage again which will rerender our list of saved articles
       if (data.ok) {
-        initPage();
+        console.log("articleToDeleteID info: ");
+        console.log(articleToDeleteID);
+        console.log("data : ");
+        console.log(data);
       }
+      initPage();
     });
   }
 
   function handleArticleNotes() {
-    // This function handles opending the notes modal and displaying our notes
+    // This function handles opending the notes bootBox and displaying our notes
     // We grab the id of the article to get notes for from the panel element the delete button sits inside
-    var currentArticle = $(this).parents(".panel").data();
+    var currentArticleNNum = $(this).attr("id");
+    var currentArticle = currentArticleNNum.slice(1);
+    var articleTitle;
+    // var noteNum = 0;
+    // noteNum++;
+
+     // Grab the article title
+    $.get("/api/articles/" + currentArticle)
+      .then(function(data) {
+      	articleTitle = data.title;
+ 	});
+
     // Grab any notes with this headline/article id
-    $.get("/api/notes/" + currentArticle._id).then(function(data) {
-      // Constructing our initial HTML to add to the notes modal
-      var modalText = [
+    $.get("/api/notes/" + currentArticle)
+      .then(function(data) {
+      	console.log("currentArticle - for notes - info: ");
+        console.log(currentArticle);
+        console.log("Note Data : ");
+        console.log(data);
+
+      // Constructing our initial HTML to add to the notes bootBox
+      var bootBoxText = [
         "<div class='container-fluid text-center'>",
-        "<h4>Notes For Article: ",
-        currentArticle._id,
+        "<h4>",
+        "<strong>Article Notes</strong> ",
         "</h4>",
+        "<h5>",
+        articleTitle,
+        "</h5>",
         "<hr />",
         "<ul class='list-group note-container'>",
         "</ul>",
-        "<textarea placeholder='New Note' rows='4' cols='60'></textarea>",
+        "<textarea id='textMessage' placeholder='New Note' rows='4' cols='60'></textarea>",
         "<button class='btn btn-success save'>Save Note</button>",
         "</div>"
       ].join("");
-      // Adding the formatted HTML to the note modal
+      // Adding the formatted HTML to the note bootBox
       bootbox.dialog({
-        message: modalText,
+        message: bootBoxText,
         closeButton: true
       });
+
       var noteData = {
-        _id: currentArticle._id,
-        notes: data || []
+        _article_Id: currentArticle,
+        noteText: data || []
       };
       // Adding some information about the article and article notes to the save button for easy access
       // When trying to add a new note
       $(".btn.save").data("article", noteData);
-      // renderNotesList will populate the actual note HTML inside of the modal we just created/opened
+      // renderNotesList will populate the actual note HTML inside of the bootBox we just created/opened
+      console.log("noteData ");
+      console.log(noteData);
       renderNotesList(noteData);
     });
   }
@@ -184,17 +218,24 @@ $(document).ready(function() {
     // Setting a variable to hold some formatted data about our note,
     // grabbing the note typed into the input box
     var noteData;
-    var newNote = $(".bootbox-body textarea").val().trim();
+    var newNote = $("#textMessage").val().trim();
     // If we actually have data typed into the note input field, format it
     // and post it to the "/api/notes" route and send the formatted noteData as well
     if (newNote) {
       noteData = {
-        _id: $(this).data("article")._id,
+        _article_Id: $(this).data("article")._article_Id,
         noteText: newNote
       };
       $.post("/api/notes", noteData).then(function() {
-        // When complete, close the modal
+          console.log("noteData (id + noteText) =");
+	      console.log(noteData);
+	      renderNotesList(noteData)
+
+        // When complete, close the bootBox/refresh
+        var textmessageArea = $("#textMessage");
+        textmessageArea = "";
         bootbox.hideAll();
+        //initPage();
       });
     }
   }
@@ -209,7 +250,7 @@ $(document).ready(function() {
       url: "/api/notes/" + noteToDelete,
       method: "DELETE"
     }).then(function() {
-      // When done, hide the modal
+      // When done, hide the bootBox
       bootbox.hideAll();
     });
   }

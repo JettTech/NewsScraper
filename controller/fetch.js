@@ -42,7 +42,7 @@ module.exports = {
       .catch(function(err) {
         // This query won't insert articles with duplicate headlines, but it will error after inserting the others...
         res.json({
-          message: err
+          message: "Check out your scrapes!"
         });
       });
   }

@@ -8,7 +8,7 @@ var NoteSchema = new Schema ({
 		ref: "Article"
 	},
 
-	body: String,
+	noteText: String,
 
 	date: {
 		type: Date,

@@ -55,7 +55,7 @@ $(document).ready(function() {
         "</h4>",
         "</div>",
         "<div class='card-content'>",
-        "<div class='panel-heading text-center back' onClick='flipOver()'>",
+        "<div class='panel-heading text-center back'>",
         "<h4>",
         "<a class='article-link' target='_blank' href='" + article.link + "'>",
         article.title,
@@ -65,7 +65,7 @@ $(document).ready(function() {
         "<a  target='_blank' href='" + article.link + "' class='btn btn-large btn-success link'>",
         "Visit Article",
         "</a>",
-        "<a class='btn btn-large btn-success save'>",
+        "<a class='btn btn-large btn-success save' id='" + article._id + "'>",
         "Save Article",
         "</a>",
         "</div>",
@@ -73,24 +73,9 @@ $(document).ready(function() {
         "</div>"
       ].join("")
     );
-    // We attach the article's id to the jQuery element
-    // We will use this when trying to figure out which article the user wants to save
-    panel.data("_id", article._id);
-    // We return the constructed panel jQuery element
+    // panel.data("_id", article._id);
     return panel;
   }
-
-  function noteMessage(note) {
-    if(note._articleID) {
-     for (note of note._articleID) {
-      var message =  $("#noteBoxTitle").html("<div>" + note + "</div><br/>");
-     }
-    }
-    else {
-      $("#noteBoxTitle").text(" Be the first to comment.  Click on the edit button to your right and share your thoughts!!");
-    }
-  }
-
 
   function renderEmpty() {
     // This function renders some HTML to the page explaining we don't have any articles to view
@@ -117,22 +102,18 @@ $(document).ready(function() {
 
   function handleArticleSave() {
     // This function is triggered when the user wants to save an article
-    // When we rendered the article initially, we attatched a javascript object containing the headline id
-    // to the element using the .data method. Here we retrieve that.
-    var articleToSave = $(this)
-      .parents(".panel")
-      .data();
-    // articleToSave.saved = true;
+    var articleToSaveID = $(this).attr("id");
     // Using a patch method to be semantic since this is an update to an existing record in our collection
     $.ajax({
       method: "PUT",
-      url: "/api/articles/" + articleToSave._id,
-      body: articleToSave.saved = true
+      url: "/api/articles/" + articleToSaveID,
+      body: articleToSaveID
     }).then(function(data) {
       // If the data was saved successfully
         console.log("articleToSave info: ");
-        console.log(articleToSave._id);
-        console.log(articleToSave);
+        console.log(articleToSaveID);
+        console.log("data : ");
+        console.log(data);
         initPage();
     });
   }
@@ -144,7 +125,8 @@ $(document).ready(function() {
       // already in our collection, re render the articles on the page
       // and let the user know how many unique articles we were able to save
       initPage();
-      bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
+      bootbox.alert("<h3 class='text-center'> Nice choice. Check out your scrapes! <h3>");
+      // can alternatively use the returned message above..: "+ data.message +""
     });
   }
 });

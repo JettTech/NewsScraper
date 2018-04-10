@@ -9,6 +9,7 @@ var articleController = require("../../controller/articles");
 //Article Routes:
 //===============================================
 router.get("/", articleController.findAll);
+router.get("/:id", articleController.findOne);
 router.delete("/:id", articleController.delete);
 router.put("/:id", articleController.update);
 

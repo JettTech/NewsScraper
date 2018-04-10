@@ -26,18 +26,24 @@ body {
   position: fixed;
   top: 0;
   z-index: 999;
-  background-color: #e79212;
+  background-color: #23629c;
 }
 
 .navbar-brand.brand-logo {
   margin-top: 15px;
-  color: #0c7cd5;
+  color: white;
   font-family: "Cormorant SC";
   font-size: 42px;
 }
 
 a.btn {
-  background-color: #0c7cd5;
+  background-color: #23629c;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar-brand {
+    margin-left: 5px !important ;
+  }
 }
 
 .jumbotron {
@@ -100,7 +106,7 @@ a.btn {
   box-shadow: 3px 3px 20px lightslategrey;
   height: 400px;
   margin: 20px 10px;
-  background-color: #eeaf3e;
+  background-color: #0c7cd5;
   border: 5px solid slategray;
 }
 
@@ -120,8 +126,12 @@ a.btn {
   color: #e3e4f3;
 }
 
+.panel.panel-default {
+  background-color: transparent;
+}
+
 .panel.panel-default .panel-heading {
-  background-color: blue;
+  background-color: transparent;
   position: relative;
 }
 
@@ -129,10 +139,15 @@ a.btn {
   color: white;
 }
 
+.alert-warning {
+  background-color: #0c7cd5;
+}
+
 .card .btn.save {
+  background-color: #23629c;
   position: absolute;
   top: 240px;
-  right: 32%;
+  right: 35%;
   z-index: 999999;
 }
 
@@ -140,7 +155,7 @@ a.btn {
   background-color: orange;
   position: absolute;
   top: 300px;
-  right: 32%;
+  right: 35%;
   z-index: 999999;
 }
 
@@ -154,15 +169,25 @@ a.btn {
   }
 }
 
-@media only screen and (max-width: 1200px) and (min-width: 800px) {
-  .card .btn {
-    right: 33%;
+@media only screen and (max-width: 1200px) and (min-width: 801px) {
+  .card .btn.save {
+    right: 30%;
+  }
+
+  .card .btn.link {
+    right: 30%;
   }
 }
 
 @media only screen and (max-width: 800px) and (min-width: 380px) {
-  .card .btn {
-    right: 25%;
+  .card .btn.save {
+    top: 260px;
+    right: 28%;
+  }
+
+  .card .btn.link {
+    top: 320px;
+    right: 28%;
   }
 }
 
@@ -229,6 +254,7 @@ a.btn {
 
 .panel-heading .btn.delete {
   right: 160px;
+  margin-right: 5px;
 }
 
 .panel.panel-default .panel-body {
@@ -275,10 +301,6 @@ a.btn {
 
 .scrape-new {
   cursor: pointer;
-}
-
-.m-top-80 {
-  margin-top: 80px;
 }
 
 textarea {
@@ -339,3 +361,6 @@ row {
   }
 }
 
+.modal {
+  background-color: transparent !important;
+}
