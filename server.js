@@ -27,40 +27,20 @@ app.use(routes); //requires EVERY REQUEST to process through the ROUTES MIDDLEWA
 //PORT and Database Definition AND Set-up
 //=========================================
 var PORT = process.env.PORT | 4500;
+
 //'mongodb://<dbuser>:<dbpassword>@<host1>:<port1>,<host2>:<port2>/<dbname>?replicaSet=<replicaSetName>';
 //"mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk"
 
-var uri = "mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk";
-var options = {
-  "server" : {
-    "socketOptions" : {
-      "keepAlive" : 300000,
-      "connectTimeoutMS" : 30000
-    }
-  },
-  "replset" : {
-    "socketOptions" : {
-      "keepAlive" : 300000,
-      "connectTimeoutMS" : 30000
-    }
-  }
-}
+mongoose.Promise = Promise;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
-mongoose.connect(uri, options);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-
-
-// mongoose.Promise = Promise;
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
-
-// mongoose.connect( MONGODB_URI, {useMongoClient: true} );
+mongoose.connect( MONGODB_URI, {useMongoClient: true} );
 
 
 // Start the Server // Initialize Server Listiner with PORT Connection..
 //==========================================================================
 app.listen(PORT, function() {
 	console.log("Hey there! You're listening on PORT: " + PORT);
+	console.log("MONGODB_URI");
+	console.log(MONGODB_URI);
 });
-
-
