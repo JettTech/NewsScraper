@@ -1,33 +1,19 @@
 {
-  "name": "newscraper",
+  "name": "mongo_homework",
   "version": "1.0.0",
-  "description": "A web scraping tool that uses Cheerio and MongoDB to scrape, store, and post responses to news articles found on the web.",
-    "engines": {
-    "node": "6.10.1",
-    "npm": "3.10.10"
-  },
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JettTech/NewsScraper.git"
-  },
-  "author": "Lisa J",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JettTech/NewsScraper/issues"
-  },
-  "homepage": "https://github.com/JettTech/NewsScraper#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.16.2",
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.2",
+    "express": "^4.16.1",
     "express-handlebars": "^3.0.0",
-    "mongod": "^2.0.0",
-    "mongoose": "^4.13.6"
+    "mongoose": "^4.12.1"
   }
 }

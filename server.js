@@ -27,10 +27,14 @@ app.use(routes); //requires EVERY REQUEST to process through the ROUTES MIDDLEWA
 //=========================================
 var PORT = process.env.PORT | 4500;
 
-mongoose.Promise = Promise;
+mongoose.Promise = global.Promise;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
-mongoose.connect( MONGODB_URI, {useMongoClient: true} );
+mongoose.connect( MONGODB_URI, 
+  {
+	useMongoClient: true
+  }
+);
 
 // Start the Server // Initialize Server Listiner with PORT Connection..
 //==========================================================================
