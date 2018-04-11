@@ -2,6 +2,10 @@
   "name": "newscraper",
   "version": "1.0.0",
   "description": "A web scraping tool that uses Cheerio and MongoDB to scrape, store, and post responses to news articles found on the web.",
+    "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

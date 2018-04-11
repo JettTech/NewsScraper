@@ -5,7 +5,6 @@ var app = express();
 var mongoose = require("mongoose");
 var expressHandlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
-
 var routes = require("./routes")
 
 //Server SET-UP (Routing MIDDLEWARE Definition AND LOCAL Dependency/import Configuration)
@@ -28,19 +27,15 @@ app.use(routes); //requires EVERY REQUEST to process through the ROUTES MIDDLEWA
 //=========================================
 var PORT = process.env.PORT | 4500;
 
-//'mongodb://<dbuser>:<dbpassword>@<host1>:<port1>,<host2>:<port2>/<dbname>?replicaSet=<replicaSetName>';
-//"mongodb://heroku_r3c350dk:ahv3co62acof8hqhc9n9uvkm0i@ds033186.mlab.com:33186/heroku_r3c350dk"
-
 mongoose.Promise = Promise;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
 
 mongoose.connect( MONGODB_URI, {useMongoClient: true} );
 
-
 // Start the Server // Initialize Server Listiner with PORT Connection..
 //==========================================================================
 app.listen(PORT, function() {
 	console.log("Hey there! You're listening on PORT: " + PORT);
-	console.log("MONGODB_URI");
+	console.log("Currently in the following environment:");
 	console.log(MONGODB_URI);
 });
