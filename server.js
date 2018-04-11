@@ -1,45 +1,48 @@
-//DEPENDENCIES:
-//===============================================
+// Web Scraper Homework Solution Example
+// (be sure to watch the video to see
+// how to operate the site in the browser)
+// -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+// Require our dependencies
 var express = require("express");
-var app = express();
 var mongoose = require("mongoose");
-var expressHandlebars = require("express-handlebars");
+var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
-var routes = require("./routes")
 
-//Server SET-UP (Routing MIDDLEWARE Definition AND LOCAL Dependency/import Configuration)
-//=========================================================================================
-app.use(express.static("public"));  //serves the "PUBLIC" folder as the static folder/directory for entire app.
+// Set up our port to be either the host's designated port, or 3000
+var PORT = process.env.PORT || 3000;
 
-app.engine("handlebars", expressHandlebars({ //ESTABLISHES THE ENGINE WITHIN APP
-	defaultLayout: "main" //desingates the index file to reference as the root views file.
-}));
-app.set("view-engine", "handlebars"); //INFORMS THE APP to USE the defined VIEW ENGINE above...
- 
-app.use(bodyParser.urlencoded({extended: false})); // code determins how to handle form
- //submissions, the option "false" denies access to extended objects (objects whose keys have values that are 
-  // addt'l objs..), and will instead return them as undefined.
+// Instantiate our Express App
+var app = express();
+
+// Require our routes
+var routes = require("./routes");
+
+// Designate our public folder as a static directory
+app.use(express.static("public"));
+
+// Connect Handlebars to our Express app
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Use bodyParser in our app
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(routes); //requires EVERY REQUEST to process through the ROUTES MIDDLEWARE >> Do we need to use this
 
+// Have every request go through our route middleware
+app.use(routes);
 
-//PORT and Database Definition AND Set-up
-//=========================================
-var PORT = process.env.PORT | 4500;
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.Promise = global.Promise;
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoNewScraper";
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
+});
 
-mongoose.connect( MONGODB_URI, 
-  {
-	useMongoClient: true
-  }
-);
-
-// Start the Server // Initialize Server Listiner with PORT Connection..
-//==========================================================================
+// Listen on the port
 app.listen(PORT, function() {
-	console.log("Hey there! You're listening on PORT: " + PORT);
-	console.log("Currently in the following environment:");
-	console.log(MONGODB_URI);
+  console.log("Listening on port: " + PORT);
 });
